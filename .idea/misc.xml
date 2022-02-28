@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/gch05/AndroidStudioProjects/memvoca/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/fragment_home.xml" value="0.16" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/fragment_trash.xml" value="0.263671875" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26012269938650306" />
       </map>
     </option>
   </component>
