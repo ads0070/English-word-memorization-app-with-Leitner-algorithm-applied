@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Memvoca">
         <activity
-            android:name=".MainActivity"
+            android:name=".StudyFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
