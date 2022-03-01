@@ -54,8 +54,8 @@
 
         app:tabTextAppearance="@style/TabName"
         app:tabTextColor="@color/gray"
-        app:tabIndicator="@color/f"
         app:tabSelectedTextColor="@color/black"
+        app:tabIndicator="@color/f"
         app:tabGravity="fill"
         app:tabRippleColor="@color/f">
 

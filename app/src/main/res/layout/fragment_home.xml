@@ -6,48 +6,358 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_percent="0.02" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guideline_Lgap_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/guideline_Lgap_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/guideline_Rgap_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/guideline_Rgap_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
+        android:id="@+id/guideline_Tgap_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.14" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Tgap_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Mgap_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Mgap_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Ugap_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.59" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_Ugap_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.64" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Tgap_top"
+        app:layout_constraintEnd_toStartOf="@id/guideline_Lgap_left"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounding_rect"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="오늘은?"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:gravity="left">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:text="Day 8"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="일차"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:gravity="right">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_top"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Tgap_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline_Lgap_right"
+        android:background="@drawable/rounding_rect"
+        android:orientation="vertical"
+        android:weightSum="5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="3"
+            android:text="현재 나의 학습 진척도는?"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="60dp"
+            android:layout_marginVertical="5dp"
+            android:layout_weight="2"
+            android:text="진척도 확인하기"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="20sp"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_Tgap_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Mgap_top"
+        app:layout_constraintEnd_toStartOf="@id/guideline_Lgap_left"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rounding_rect"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:text="학습박스"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:text="확인하기"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_Tgap_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Mgap_top"
+        app:layout_constraintEnd_toStartOf="@id/guideline_Rgap_left"
+        app:layout_constraintStart_toStartOf="@id/guideline_Lgap_right"
+        android:background="@drawable/rounding_rect"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:text="테스트"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:text="보러가기"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_Tgap_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Mgap_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_Rgap_right"
+        android:background="@drawable/rounding_rect"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:text="(닉네임) 님"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:text="환영합니다."
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:autoSizeTextType="uniform"
+            android:layout_gravity="center"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/guideline_Mgap_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_Ugap_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_marginTop="10dp"
+            android:text="하루 명언"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="35sp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:layout_marginVertical="10dp"
+            android:text="The road to success and the road to failure are almost exactly the same."
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="25sp"
+            android:gravity="center">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="성공으로 가는 길과 실패로 가는 길은 거의 같다."
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="20sp"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="- Colin R.Davis -"
+                android:textStyle="italic"
+                android:textColor="@color/black"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="20sp"
+                android:gravity="center">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
