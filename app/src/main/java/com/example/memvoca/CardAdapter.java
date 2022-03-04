@@ -9,61 +9,51 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.ArrayList;
 
-public class CardAdapter extends PagerAdapter {
-    private Context mContext;
-    private ArrayList<String> wordList;
-    private ArrayList<String> pronunciationList;
-    private GestureDetector gestureDetector = null;
+public class CardAdapter extends FragmentStateAdapter {
 
-    public CardAdapter(Context context, ArrayList<String> wordList, ArrayList<String> pronunciationList)
-    {
-        this.mContext = context;
-        this.wordList = wordList;
-        this.pronunciationList = pronunciationList;
+    private Fragment fragment = new StudyFragment();
+
+    public CardAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
     }
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.fragment_card_front, null);
+    public Fragment createFragment(int position) {
+        return new CardFrontFragment();
+    }
 
-        gestureDetector = new GestureDetector( mContext, new SingleTapGestureListener() );
-        view.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                gestureDetector.onTouchEvent(event);
-                return true;
+            public void onClick(View view) {
+                System.out.println("test");
             }
         });
-
-        TextView tv_card = view.findViewById(R.id.word);
-        TextView tv_pronunciation = view.findViewById(R.id.pronunciation);
-        
-        tv_card.setText(wordList.get(position));
-        tv_pronunciation.setText(pronunciationList.get(position));
-
-        container.addView(view);
-
-        return view;
     }
 
     @Override
-    public int getCount() {
-        return wordList.size();
+    public int getItemCount() {
+        return 1000;
     }
 
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return (view == (View) object);
-    }
+//    public void clickCard(StudyFragment view){
+//        View card = view.getActivity().findViewById(R.id.card_frameLayout);
+//        card.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                System.out.println("test");
+//            }
+//        });
+//    }
 }

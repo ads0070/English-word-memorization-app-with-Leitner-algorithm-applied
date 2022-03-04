@@ -20,15 +20,15 @@ public class CardBackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_card_back, container, false);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                CardFrontFragment cardFrontFragment = new CardFrontFragment();
-                transaction.replace(R.id.card_frameLayout, cardFrontFragment);
-                transaction.commit();
-            }
-        });
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                CardFrontFragment cardFrontFragment = new CardFrontFragment();
+//                transaction.replace(R.id.card_frameLayout, cardFrontFragment);
+//                transaction.commit();
+//            }
+//        });
 
         return view;
     }

@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    Fragment homeFragment, trashFragment;
+    Fragment homeFragment, studyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
-        trashFragment = new TrashFragment();
+        studyFragment = new StudyFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, trashFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, studyFragment).commit();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position == 0) {
                     selected = homeFragment;
                 } else if (position == 1) {
-                    selected = trashFragment;
+                    selected = studyFragment;
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();

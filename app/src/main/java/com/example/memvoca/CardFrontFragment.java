@@ -14,23 +14,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class CardFrontFragment extends Fragment {
 
-    private View view;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_card_front, container, false);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                CardBackFragment cardBackFragment = new CardBackFragment();
-                transaction.replace(R.id.card_frameLayout, cardBackFragment);
-                transaction.commit();
-            }
-        });
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_card_front, container, false);
+//        view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                CardBackFragment cardBackFragment = new CardBackFragment();
+//                transaction.replace(R.id.card_frameLayout, cardBackFragment);
+//                transaction.commit();
+//            }
+//        });
 
         return view;
     }
-
 }

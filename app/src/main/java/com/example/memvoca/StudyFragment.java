@@ -3,57 +3,69 @@ package com.example.memvoca;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.ArrayList;
+public class StudyFragment extends Fragment {
 
-public class StudyFragment extends AppCompatActivity {
-
-    ViewPager viewPager;
-    private ArrayList<String> wordList;
-    private ArrayList<String> pronunciationList;
+    private ViewGroup viewGroup;
+    private CardAdapter cardAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_study);
-
-        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-        CardFrontFragment card_fragment= new CardFrontFragment();
-        transaction.replace(R.id.card_frameLayout, card_fragment);
-        transaction.commit();*/
-
-        viewPager = findViewById(R.id.card_frameLayout);
-        this.initializeData();
-
-        viewPager.setClipToPadding(false);
-
-        viewPager.setPadding(0, 0, 0, 0);
-        viewPager.setPageMargin(100);
-
-        viewPager.setAdapter(new CardAdapter(this, wordList, pronunciationList));
-
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_study, container, false);
 
-    public void initializeData()
-    {
-        wordList = new ArrayList<>();
-        pronunciationList = new ArrayList<>();
+        pagerInit();
 
-        wordList.add("test1");
-        wordList.add("test2");
-        wordList.add("test3");
+        return viewGroup;
+    }
 
-        pronunciationList.add("p_test1");
-        pronunciationList.add("p_test2");
-        pronunciationList.add("p_test3");
+    @Override
+    public void onResume() {
+        super.onResume();
+//        cardAdapter.clickCard(this);
+
+        View card = getActivity().findViewById(R.id.card_frameLayout);
+        card.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                System.out.println("test");
+            }
+        });
+    }
+
+    private void pagerInit(){
+        ViewPager2 viewPager = viewGroup.findViewById(R.id.card_frameLayout);
+
+        cardAdapter = new CardAdapter(getActivity());
+        viewPager.setAdapter(cardAdapter);
+
+        viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        viewPager.setOffscreenPageLimit(1);
+        viewPager.setCurrentItem(0);
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
+        viewPager.setPageTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+
+            }
+        });
     }
 }
