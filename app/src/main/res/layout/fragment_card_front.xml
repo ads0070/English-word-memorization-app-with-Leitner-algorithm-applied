@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:background="@drawable/tv_card">
 
     <TextView
         android:id="@+id/word"

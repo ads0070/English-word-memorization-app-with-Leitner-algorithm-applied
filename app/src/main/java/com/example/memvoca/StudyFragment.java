@@ -1,8 +1,13 @@
 package com.example.memvoca;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
@@ -19,22 +24,24 @@ public class StudyFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_study);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         CardFrontFragment card_fragment= new CardFrontFragment();
         transaction.replace(R.id.card_frameLayout, card_fragment);
-        transaction.commit();
+        transaction.commit();*/
 
         viewPager = findViewById(R.id.card_frameLayout);
         this.initializeData();
 
         viewPager.setClipToPadding(false);
 
-        viewPager.setPadding(100, 0, 100, 0);
-        viewPager.setPageMargin(50);
+        viewPager.setPadding(0, 0, 0, 0);
+        viewPager.setPageMargin(100);
 
         viewPager.setAdapter(new CardAdapter(this, wordList, pronunciationList));
+
     }
+
 
     public void initializeData()
     {

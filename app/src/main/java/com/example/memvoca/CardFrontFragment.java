@@ -20,7 +20,6 @@ public class CardFrontFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_card_front, container, false);
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
