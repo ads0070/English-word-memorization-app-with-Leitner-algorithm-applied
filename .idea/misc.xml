@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/gch05/AndroidStudioProjects/memvoca/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/drawable/back_arrow_config.xml" value="0.492" />
         <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/drawable/rounding_rect.xml" value="0.492" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/activity_function.xml" value="0.42481884057971014" />
         <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/activity_main.xml" value="0.42481884057971014" />
+        <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/fragment_box_list.xml" value="0.42481884057971014" />
         <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/fragment_home.xml" value="0.42481884057971014" />
         <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/layout/fragment_trash.xml" value="0.263671875" />
         <entry key="..\:/Users/rlarl/Desktop/memVoca/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.26012269938650306" />

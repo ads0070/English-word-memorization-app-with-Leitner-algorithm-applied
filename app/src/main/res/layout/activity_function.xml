@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FunctionActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -39,40 +39,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_btn_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.085" />
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <ImageButton
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_menu_right"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_btn_bottom"
+        android:src="@drawable/back_arrow"
+        android:background="@color/transparent"
+        android:padding="0dp">
+    </ImageButton>
 
-        app:layout_constraintBottom_toTopOf="@id/guideline_menu_bottom"
-        app:layout_constraintEnd_toStartOf="@id/guideline_menu_right"
-        app:layout_constraintStart_toEndOf="@id/guideline_left"
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:tabTextAppearance="@style/TabName"
-        app:tabTextColor="@color/gray"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicator="@color/transparent"
-        app:tabGravity="fill"
-        app:tabRippleColor="@color/transparent">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="홈"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="공부" />
-
-    </com.google.android.material.tabs.TabLayout>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintTop_toTopOf="@id/guideline_btn_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_btn_bottom"
+        android:text="테스트 입니다."
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="50dp">
+    </TextView>
 
     <FrameLayout
-        android:id="@+id/frame"
+        android:id="@+id/func_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
