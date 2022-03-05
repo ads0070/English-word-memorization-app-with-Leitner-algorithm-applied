@@ -24,4 +24,5 @@ public class FunctionActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.func_frame, boxListFragment).commit();
     }
+
 }

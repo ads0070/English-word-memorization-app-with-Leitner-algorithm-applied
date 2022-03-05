@@ -1,10 +1,13 @@
 package com.example.memvoca;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,23 +16,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class CardBackFragment extends Fragment {
 
-    private View view;
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_card_back, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                CardFrontFragment cardFrontFragment = new CardFrontFragment();
-//                transaction.replace(R.id.card_frameLayout, cardFrontFragment);
-//                transaction.commit();
-//            }
-//        });
+        View rootView = inflater.inflate(R.layout.fragment_card_front, container, false);
 
-        return view;
+        rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("BYE");
+            }
+        });
+
+        return rootView;
     }
 }

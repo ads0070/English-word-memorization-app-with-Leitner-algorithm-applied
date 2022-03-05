@@ -3,12 +3,17 @@ package com.example.memvoca;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 public class StudyFragment extends Fragment {
@@ -29,20 +34,6 @@ public class StudyFragment extends Fragment {
         pagerInit();
 
         return viewGroup;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        cardAdapter.clickCard(this);
-
-        View card = getActivity().findViewById(R.id.card_frameLayout);
-        card.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                System.out.println("test");
-            }
-        });
     }
 
     private void pagerInit(){
