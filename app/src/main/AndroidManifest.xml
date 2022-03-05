@@ -15,14 +15,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
             android:theme="@style/BasicTheme"/>
+        <activity android:name=".FirstActivity"/>
+        <activity android:name=".FunctionActivity"/>
         <activity android:name=".MainActivityTestDB"/>
-        <activity android:name=".SettingActivity"/>
     </application>
 
 </manifest>

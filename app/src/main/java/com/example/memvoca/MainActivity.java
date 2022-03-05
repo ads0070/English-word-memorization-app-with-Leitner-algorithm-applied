@@ -2,32 +2,35 @@ package com.example.memvoca;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
+    private Context mContext;
+    private long lastTimeBackPressed = 0;
     Fragment homeFragment, trashFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = this;
 
-        CheckFirstLaunch();
+        int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
+
+        if (wordTarget == -1) {
+            Intent intent = new Intent(MainActivity.this, FirstActivity.class);
+            startActivity(intent);
+        }
 
         homeFragment = new HomeFragment();
         trashFragment = new TrashFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frame, trashFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, homeFragment).commit();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
@@ -58,18 +61,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void CheckFirstLaunch(){
-        SharedPreferences pref = getSharedPreferences("isFirst" , Activity.MODE_PRIVATE);
-        boolean isFirst = pref.getBoolean("isFirst", false);
+    @Override
+    public void onBackPressed() {
+        if(System.currentTimeMillis() > lastTimeBackPressed + 1500) {
+            lastTimeBackPressed = System.currentTimeMillis();
+            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if(!isFirst){
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean("isFirst", true);
-            editor.apply();
-
-            Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-            startActivity(intent);
+        if(System.currentTimeMillis() <= lastTimeBackPressed + 1500) {
             finish();
         }
+
     }
 }

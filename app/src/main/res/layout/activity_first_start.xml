@@ -38,21 +38,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.73" />
+        app:layout_constraintGuide_percent="0.83" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_target_end"
@@ -79,18 +79,48 @@
             android:autoSizeStepGranularity="2sp"
             android:gravity="left|center"
             android:textColor="#000000"
-            android:text="환영합니다!\n어플을 사용하기 전\n몇 가지 설정을 시작할게요."/>
+            android:text="환영합니다!\n학습을 진행하기 전에\n몇 가지 설정을 시작할게요."/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:weightSum="4"
+        android:weightSum="6"
         app:layout_constraintBottom_toTopOf="@+id/guideline_target_bottom"
         app:layout_constraintEnd_toEndOf="@id/guideline_target_end"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_title_bottom">
+
+        <TextView
+            android:id="@+id/user_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="32dp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="bottom|left"
+            android:text="닉네임"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/user_name"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="32dp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/tv_underline"
+            android:gravity="center|left"
+            android:textColor="@color/black"
+            android:maxLength="5"
+            android:selectAllOnFocus="true"
+            android:imeOptions="actionNext"/>
 
         <TextView
             android:id="@+id/target_word_count_tv"
@@ -103,7 +133,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="bottom|left"
             android:text="일일 목표 단어 개수"
-            android:textColor="#3D3D3D" />
+            android:textColor="@color/black" />
 
         <EditText
             android:id="@+id/target_word_count"
@@ -115,9 +145,14 @@
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
-            android:background="@drawable/tv_target"
+            android:background="@drawable/tv_underline"
             android:gravity="center|left"
-            android:text=""/>
+            android:hint="@string/word_target_hint"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:maxLength="3"
+            android:selectAllOnFocus="true"
+            android:imeOptions="actionDone"/>
 
         <TextView
             android:id="@+id/target_day_tv"
@@ -130,7 +165,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="bottom|left"
             android:text="반복 주기"
-            android:textColor="#3D3D3D" />
+            android:textColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,9 +184,14 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeStepGranularity="2sp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_target"
+                android:background="@drawable/tv_underline"
                 android:gravity="center"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/day_target1"
+                android:maxLength="2"
+                android:enabled="false"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/target_day2"
@@ -163,9 +203,14 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeStepGranularity="2sp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_target"
+                android:background="@drawable/tv_underline"
                 android:gravity="center"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/day_target2"
+                android:maxLength="2"
+                android:enabled="false"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/target_day3"
@@ -177,9 +222,14 @@
                 android:autoSizeMinTextSize="10sp"
                 android:autoSizeStepGranularity="2sp"
                 android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_target"
+                android:background="@drawable/tv_underline"
                 android:gravity="center"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/day_target3"
+                android:maxLength="2"
+                android:enabled="false"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/target_day4"
@@ -192,8 +242,13 @@
                 android:autoSizeStepGranularity="2sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:background="@drawable/tv_target"
-                android:layout_marginEnd="10dp"/>
+                android:background="@drawable/tv_underline"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/day_target4"
+                android:maxLength="2"
+                android:enabled="false"
+                android:imeOptions="actionNext"/>
 
             <EditText
                 android:id="@+id/target_day5"
@@ -206,7 +261,12 @@
                 android:autoSizeStepGranularity="2sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:background="@drawable/tv_target"/>
+                android:background="@drawable/tv_underline"
+                android:textColor="@color/black"
+                android:text="@string/day_target5"
+                android:maxLength="2"
+                android:enabled="false"
+                android:imeOptions="actionDone"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -220,16 +280,17 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_btn_top">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="확인"
             android:autoSizeMaxTextSize="50dp"
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_confirm"/>
+            android:background="@drawable/btn_disabled_confirm"
+            android:clickable="false"
+            android:text="확인"
+            android:textColor="#B6BACB" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
