@@ -54,7 +54,6 @@ public class StudyFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                System.out.println(position);
             }
         });
         viewPager.setPageTransformer(new ViewPager2.PageTransformer() {
