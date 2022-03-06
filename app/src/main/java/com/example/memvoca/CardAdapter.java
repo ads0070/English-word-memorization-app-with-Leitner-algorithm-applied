@@ -16,10 +16,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.adapter.FragmentViewHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CardAdapter extends FragmentStateAdapter {
+
+    public CardFrontFragment cardFrontFragment;
+    public boolean flag = false;
 
     public CardAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -28,13 +33,27 @@ public class CardAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        new CardBackFragment();
-        return new CardFrontFragment();
+
+        Fragment fragment1 = new CardFrontFragment();
+        Fragment fragment2 = new CardBackFragment();
+
+//        ((CardFrontFragment) fragment1).click();
+
+        if(flag){
+            return fragment2;
+        }else{
+            return fragment1;
+        }
     }
 
     @Override
     public int getItemCount() {
         return 1000;
+    }
+
+
+    public void pointOut(){
+
     }
 
 }

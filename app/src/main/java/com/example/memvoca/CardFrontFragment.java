@@ -30,8 +30,11 @@ public class CardFrontFragment extends Fragment {
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.print("hello~~~~~~~~~~");
                 FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.card_frame);
                 ViewPager2 viewPager = (ViewPager2) getActivity().findViewById(R.id.card_frameLayout);
+
+
 
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 inflater.inflate(R.layout.fragment_card_back, frameLayout, true);
@@ -40,11 +43,15 @@ public class CardFrontFragment extends Fragment {
                 viewPager.setUserInputEnabled(false);
 
                 ViewGroup contain = (ViewGroup) view.getParent();
-                contain.setEnabled(false);
+//                contain.setEnabled(false);
             }
         });
         return rootView;
     }
+
+//    public void click(){
+//        System.out.println("QlQl");
+//    }
 }
 
 
