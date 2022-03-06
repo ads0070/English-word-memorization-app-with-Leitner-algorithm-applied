@@ -24,35 +24,7 @@ public class CardFrontFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_card_front, container, false);
-
-        rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.print("hello~~~~~~~~~~");
-                FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.card_frame);
-                ViewPager2 viewPager = (ViewPager2) getActivity().findViewById(R.id.card_frameLayout);
-
-
-
-                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                inflater.inflate(R.layout.fragment_card_back, frameLayout, true);
-
-
-                viewPager.setUserInputEnabled(false);
-
-                ViewGroup contain = (ViewGroup) view.getParent();
-//                contain.setEnabled(false);
-            }
-        });
         return rootView;
     }
-
-//    public void click(){
-//        System.out.println("QlQl");
-//    }
 }
-
-
-//카드 포지션 확인해서 해당 포지션의 프래그먼트를 카드 뒷면으로 바꿔치기하기 시도를 내일 해봅시다.

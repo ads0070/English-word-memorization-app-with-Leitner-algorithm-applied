@@ -23,9 +23,6 @@ import java.util.List;
 
 public class CardAdapter extends FragmentStateAdapter {
 
-    public CardFrontFragment cardFrontFragment;
-    public boolean flag = false;
-
     public CardAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -34,16 +31,7 @@ public class CardAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
 
-        Fragment fragment1 = new CardFrontFragment();
-        Fragment fragment2 = new CardBackFragment();
-
-//        ((CardFrontFragment) fragment1).click();
-
-        if(flag){
-            return fragment2;
-        }else{
-            return fragment1;
-        }
+        return new CardFrontFragment();
     }
 
     @Override
@@ -51,9 +39,5 @@ public class CardAdapter extends FragmentStateAdapter {
         return 1000;
     }
 
-
-    public void pointOut(){
-
-    }
 
 }

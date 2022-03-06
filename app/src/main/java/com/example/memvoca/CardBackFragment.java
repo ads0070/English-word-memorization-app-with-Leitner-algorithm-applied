@@ -20,16 +20,7 @@ public class CardBackFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_card_front, container, false);
-
-        rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("BYE");
-            }
-        });
-
+        View rootView = inflater.inflate(R.layout.fragment_card_back, container, false);
         return rootView;
     }
 }
