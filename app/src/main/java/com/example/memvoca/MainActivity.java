@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private long lastTimeBackPressed = 0;
-    Fragment homeFragment, trashFragment;
+    Fragment homeFragment, studyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
