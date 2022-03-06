@@ -79,6 +79,7 @@
             android:autoSizeStepGranularity="2sp"
             android:gravity="left|center"
             android:textColor="#000000"
+            android:textStyle="bold"
             android:text="환영합니다!\n학습을 진행하기 전에\n몇 가지 설정을 시작할게요."/>
     </LinearLayout>
 
@@ -290,6 +291,7 @@
             android:background="@drawable/btn_disabled_confirm"
             android:clickable="false"
             android:text="확인"
+            android:textStyle="bold"
             android:textColor="#B6BACB" />
     </LinearLayout>
 
