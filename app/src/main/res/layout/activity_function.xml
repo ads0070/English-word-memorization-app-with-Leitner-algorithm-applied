@@ -57,6 +57,7 @@
 
 
     <ImageButton
+        android:id="@+id/backBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitCenter"
@@ -71,13 +72,14 @@
     </ImageButton>
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintEnd_toEndOf="@id/guideline_right"
         app:layout_constraintTop_toTopOf="@id/guideline_btn_top"
         app:layout_constraintBottom_toBottomOf="@id/guideline_btn_bottom"
-        android:text="테스트 입니다."
+        android:text="Title"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"

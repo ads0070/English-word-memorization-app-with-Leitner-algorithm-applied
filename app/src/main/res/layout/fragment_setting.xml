@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_third"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fourth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.24" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fifth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_sixth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/guideline_first"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_second">
+
+        <TextView
+            android:id="@+id/edit_mem_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            android:gravity="center|left"
+            android:text="회원정보 수정"
+            android:textStyle="bold"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:background="@drawable/tv_underline"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/guideline_third"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_fourth">
+
+        <TextView
+            android:id="@+id/reset_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            android:gravity="center|left"
+            android:text="목표치 재설정"
+            android:textStyle="bold"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:background="@drawable/tv_underline"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/guideline_fifth"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_sixth">
+
+        <TextView
+            android:id="@+id/cycle_reset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeMaxTextSize="40sp"
+            android:autoSizeStepGranularity="2sp"
+            android:gravity="center|left"
+            android:text="반복 주기 재설정"
+            android:textStyle="bold"
+            android:paddingStart="40dp"
+            android:textColor="@color/black"
+            android:background="@drawable/tv_underline"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

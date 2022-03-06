@@ -2,4 +2,15 @@
     <string name="app_name">memvoca</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- activity_setting.xml EditText-Hint -->
+    <string name="word_target_hint">20 ~ 100개 사이</string>
+    <string name="word_target">20</string>
+    <string name="day_target1">1</string>
+    <string name="day_target2">3</string>
+    <string name="day_target3">7</string>
+    <string name="day_target4">16</string>
+    <string name="day_target5">30</string>
+
+
 </resources>

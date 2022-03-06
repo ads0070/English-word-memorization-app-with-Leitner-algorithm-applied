@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:weightSum="10"
     android:gravity="center"
-    android:background="@drawable/tv_card">
+    android:background="@drawable/tv_all_borders">
 
     <TextView
         android:id="@+id/card"
