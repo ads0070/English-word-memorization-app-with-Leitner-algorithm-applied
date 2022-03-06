@@ -52,17 +52,17 @@
         app:layout_constraintStart_toEndOf="@id/guideline_left"
         app:layout_constraintTop_toTopOf="parent"
 
-        app:tabTextAppearance="@style/TabName"
         app:tabTextColor="@color/gray"
         app:tabSelectedTextColor="@color/black"
         app:tabIndicator="@color/transparent"
         app:tabGravity="fill"
-        app:tabRippleColor="@color/transparent">
+        app:tabRippleColor="@color/transparent"
+        app:tabTextAppearance="@style/TabName">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="홈"/>
+            android:text="홈" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
