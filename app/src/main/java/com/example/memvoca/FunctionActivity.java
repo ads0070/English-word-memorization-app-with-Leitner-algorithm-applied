@@ -2,21 +2,11 @@ package com.example.memvoca;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-
-import java.util.List;
-import java.util.Objects;
 
 public class FunctionActivity extends AppCompatActivity {
 
@@ -30,7 +20,7 @@ public class FunctionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        backBtn = (ImageButton)findViewById(R.id.backBtn);
+        backBtn = findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +29,7 @@ public class FunctionActivity extends AppCompatActivity {
             }
         });
 
-        titleTv = (TextView)findViewById(R.id.title);
+        titleTv = findViewById(R.id.title);
         titleTv.setText(intent.getExtras().getString("title"));
         String type = intent.getExtras().getString("type");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -50,7 +40,8 @@ public class FunctionActivity extends AppCompatActivity {
                 transaction.replace(R.id.func_frame, boxListFragment);
                 break;
             case "test":
-                // 추가
+                TestFragment testFragment= new TestFragment();
+                transaction.replace(R.id.func_frame, testFragment);
                 break;
             case "setting":
                 SettingFragment settingFragment= new SettingFragment();
