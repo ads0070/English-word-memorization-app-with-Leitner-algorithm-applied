@@ -1,9 +1,16 @@
 package com.example.memvoca;
 
 public class CardListItem {
+
     public Integer number;
     public String word;
     public String mean;
+
+    public CardListItem(Integer number, String word, String mean) {
+        this.number = number;
+        this.word = word;
+        this.mean = mean;
+    }
 
     public Integer getNumber() {
         return number;

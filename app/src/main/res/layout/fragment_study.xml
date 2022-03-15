@@ -56,6 +56,16 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/card_frame"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/guideline_card_bottom"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/guideline_right"-->
+<!--        app:layout_constraintStart_toStartOf="@id/guideline_left"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/guideline_title_bottom"/>-->
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/card_frameLayout"
         android:layout_width="0dp"

@@ -25,14 +25,14 @@ public class CardListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         final Context context = viewGroup.getContext();
 
-        if(view ==null){
+        if(view == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_card_list, viewGroup, false);
         }
@@ -41,19 +41,16 @@ public class CardListAdapter extends BaseAdapter {
         TextView wordTextView = (TextView) view.findViewById(R.id.tv_word);
         TextView meanTextView = (TextView) view.findViewById(R.id.tv_mean);
 
-        CardListItem listViewItem = boxListItems.get(position);
+        CardListItem listViewItem = (CardListItem) getItem(position);
 
-        numTextView.setText(listViewItem.getNumber());
+        numTextView.setText(listViewItem.getNumber().toString());
         wordTextView.setText(listViewItem.getWord());
         meanTextView.setText(listViewItem.getMean());
+
         return view;
     }
 
-    public void addItem(Integer num, String word, String mean){
-        CardListItem item = new CardListItem();
-
-        item.setNumber(num);
-        item.setWord(word);
-        item.setMean(mean);
+    public void addItem(CardListItem item){
+        boxListItems.add(item);
     }
 }

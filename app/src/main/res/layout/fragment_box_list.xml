@@ -64,6 +64,7 @@
 
 
     <LinearLayout
+        android:id="@+id/box1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +101,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/box3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,6 +138,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/box5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +175,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/box2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guideline_box_gap_right"
@@ -208,6 +212,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/box4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guideline_box_gap_right"
@@ -244,6 +249,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/finish"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guideline_box_gap_right"

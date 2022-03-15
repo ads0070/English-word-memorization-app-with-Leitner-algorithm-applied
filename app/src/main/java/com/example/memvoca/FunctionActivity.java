@@ -24,8 +24,10 @@ public class FunctionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mainIntent = new Intent(FunctionActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+//                Intent mainIntent = new Intent(FunctionActivity.this, MainActivity.class);
+//                startActivity(mainIntent);
+
+                onBackPressed(); //뒤로가기 설정
             }
         });
 
@@ -46,6 +48,10 @@ public class FunctionActivity extends AppCompatActivity {
             case "setting":
                 SettingFragment settingFragment= new SettingFragment();
                 transaction.replace(R.id.func_frame, settingFragment);
+                break;
+            case "box_list":
+                CardListFragment cardListFragment= new CardListFragment();
+                transaction.replace(R.id.func_frame, cardListFragment);
                 break;
         }
         transaction.commit();
