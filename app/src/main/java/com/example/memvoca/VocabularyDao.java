@@ -2,6 +2,7 @@ package com.example.memvoca;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -13,6 +14,9 @@ public interface VocabularyDao {
     @Query("SELECT * FROM Vocabulary")
     LiveData<List<Vocabulary>> getAll();
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Vocabulary vocabulary);
+
+    @Delete
+    void delete(Vocabulary vocabulary);
 }

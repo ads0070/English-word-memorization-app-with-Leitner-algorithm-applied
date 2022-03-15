@@ -26,8 +26,8 @@ public class MainViewModel extends AndroidViewModel {
         return db.getMyDao().getAll();
     }
 
-    public void insert(Vocabulary todo){
-        new InsertAsyncTask(db.getMyDao()).execute(todo);
+    public void insert(Vocabulary vocabulary){
+        new InsertAsyncTask(db.getMyDao()).execute(vocabulary);
     }
 
     private static class InsertAsyncTask extends AsyncTask<Vocabulary,Void, Void> {

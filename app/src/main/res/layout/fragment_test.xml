@@ -105,6 +105,7 @@
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="2sp"
             android:layout_weight="2"
+            android:text="0"
             android:gravity="center|top"/>
 
         <Button
@@ -116,7 +117,7 @@
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/btn_activated_confirm"
+            android:background="@drawable/btn_unknown_selector"
             android:text="모른다"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
@@ -155,6 +156,7 @@
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="2sp"
             android:layout_weight="2"
+            android:text="0"
             android:gravity="center|top"/>
 
         <Button
@@ -166,7 +168,7 @@
             android:autoSizeStepGranularity="2sp"
             android:autoSizeTextType="uniform"
             android:layout_marginHorizontal="10dp"
-            android:background="@drawable/btn_activated_confirm"
+            android:background="@drawable/btn_know_selector"
             android:text="안다"
             android:textStyle="bold"
             android:textColor="#FFFFFF"

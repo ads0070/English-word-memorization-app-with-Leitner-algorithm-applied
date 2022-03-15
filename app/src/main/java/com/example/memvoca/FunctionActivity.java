@@ -24,9 +24,6 @@ public class FunctionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent mainIntent = new Intent(FunctionActivity.this, MainActivity.class);
-//                startActivity(mainIntent);
-
                 onBackPressed(); //뒤로가기 설정
             }
         });
@@ -44,6 +41,7 @@ public class FunctionActivity extends AppCompatActivity {
             case "test":
                 TestFragment testFragment= new TestFragment();
                 transaction.replace(R.id.func_frame, testFragment);
+                backBtn.setVisibility(View.INVISIBLE);
                 break;
             case "setting":
                 SettingFragment settingFragment= new SettingFragment();

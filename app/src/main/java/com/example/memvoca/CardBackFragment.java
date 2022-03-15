@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,26 @@ public class CardBackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_card_back, container, false);
+
+        if(getArguments() != null) {
+            String meaning = getArguments().getString("meaning");
+            String etymology = getArguments().getString("etymology");
+            String sod = getArguments().getString("sod");
+
+            TextView meaningTv = rootView.findViewById(R.id.mean);
+            TextView etymologyTv = rootView.findViewById(R.id.radix);
+            TextView sodTv = rootView.findViewById(R.id.antonyms);
+            TextView synTv = rootView.findViewById(R.id.synonym);
+
+            if(sod == null) {
+                synTv.setVisibility(View.INVISIBLE);
+            }
+
+            meaningTv.setText(meaning);
+            etymologyTv.setText(etymology);
+            sodTv.setText(sod);
+        }
+
         return rootView;
     }
 }
