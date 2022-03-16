@@ -17,21 +17,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.adapter.FragmentViewHolder;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardAdapter extends FragmentStateAdapter {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+    private ArrayList<ArrayList<String>> voca;
 
-    public CardAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
+    public CardAdapter(ArrayList<ArrayList<String>> voca) {
+        this.voca = voca;
     }
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_card_front, parent, false);
+        return new ViewHolder(view);
+    }
 
-        return new CardFrontFragment();
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.setTv(voca, position);
     }
 
     @Override
@@ -39,5 +46,26 @@ public class CardAdapter extends FragmentStateAdapter {
         return 1000;
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
 
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        TextView pageTv;
+        TextView wordTv;
+        TextView pronTv;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            pageTv = itemView.findViewById(R.id.page);
+            wordTv = itemView.findViewById(R.id.word);
+            pronTv = itemView.findViewById(R.id.pronunciation);
+        }
+        public void setTv(ArrayList<ArrayList<String>> voca, int position){
+            wordTv.setText(voca.get(1).get(position));
+            pronTv.setText(voca.get(2).get(position));
+        }
+    }
 }

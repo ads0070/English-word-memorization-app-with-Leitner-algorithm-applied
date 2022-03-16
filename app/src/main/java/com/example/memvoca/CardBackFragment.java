@@ -1,19 +1,14 @@
 package com.example.memvoca;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 public class CardBackFragment extends Fragment {
 
@@ -31,11 +26,6 @@ public class CardBackFragment extends Fragment {
             TextView meaningTv = rootView.findViewById(R.id.mean);
             TextView etymologyTv = rootView.findViewById(R.id.radix);
             TextView sodTv = rootView.findViewById(R.id.antonyms);
-            TextView synTv = rootView.findViewById(R.id.synonym);
-
-            if(sod == null) {
-                synTv.setVisibility(View.INVISIBLE);
-            }
 
             meaningTv.setText(meaning);
             etymologyTv.setText(etymology);
