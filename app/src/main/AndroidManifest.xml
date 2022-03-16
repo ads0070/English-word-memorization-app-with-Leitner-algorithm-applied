@@ -25,6 +25,8 @@
         <activity android:name=".MainActivityTestDB"/>
         <activity android:name=".ResetPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".EndPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>

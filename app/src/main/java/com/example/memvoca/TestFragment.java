@@ -93,9 +93,12 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 unknown_word_count.setText(String.valueOf(Integer.parseInt(unknown_word_count.getText().toString()) + 1));
                 count++;
                 changeToFront();
+
                 if(Integer.parseInt(unknown_word_count.getText().toString())==wordTarget) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), EndPopupActivity.class);
                     startActivity(intent);
+                    //Intent intent = new Intent(getActivity(), MainActivity.class);
+                    //startActivity(intent);
                 }
             }
         });
