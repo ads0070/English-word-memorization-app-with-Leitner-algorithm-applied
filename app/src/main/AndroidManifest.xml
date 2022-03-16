@@ -22,7 +22,6 @@
             android:theme="@style/BasicTheme"/>
         <activity android:name=".FirstActivity"/>
         <activity android:name=".FunctionActivity"/>
-        <activity android:name=".MainActivityTestDB"/>
         <activity android:name=".ResetPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".EndPopupActivity"
