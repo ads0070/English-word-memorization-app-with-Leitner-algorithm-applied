@@ -6,9 +6,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Vocabulary {
-
-    public Vocabulary(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
+public class FinishBox {
+    public FinishBox(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
         this.id = id;
         this.word = word;
         this.pronunciation = pronunciation;
@@ -33,7 +32,6 @@ public class Vocabulary {
     @ColumnInfo(name = "etymology")
     private String etymology;
 
-    // Similar/Opposite/Derived
     @ColumnInfo(name = "sod")
     private String sod;
 

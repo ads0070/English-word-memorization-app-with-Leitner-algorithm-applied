@@ -9,9 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CardListAdapter extends BaseAdapter {
+public class WordListAdapter extends BaseAdapter {
 
-    public ArrayList<CardListItem> boxListItems = new ArrayList<CardListItem>();
+    public ArrayList<WordListItem> boxListItems = new ArrayList<WordListItem>();
 
     @Override
     public int getCount() {
@@ -34,14 +34,14 @@ public class CardListAdapter extends BaseAdapter {
 
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.item_card_list, viewGroup, false);
+            view = inflater.inflate(R.layout.item_word_list, viewGroup, false);
         }
 
         TextView numTextView = (TextView) view.findViewById(R.id.tv_num);
         TextView wordTextView = (TextView) view.findViewById(R.id.tv_word);
         TextView meanTextView = (TextView) view.findViewById(R.id.tv_mean);
 
-        CardListItem listViewItem = (CardListItem) getItem(position);
+        WordListItem listViewItem = (WordListItem) getItem(position);
 
         numTextView.setText(listViewItem.getNumber().toString());
         wordTextView.setText(listViewItem.getWord());
@@ -50,7 +50,7 @@ public class CardListAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addItem(CardListItem item){
+    public void addItem(WordListItem item){
         boxListItems.add(item);
     }
 }

@@ -33,7 +33,7 @@ public class MainActivityTestDB extends AppCompatActivity implements ViewModelSt
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
 
         // UI 갱신
-        viewModel.getAll().observe(this, todos -> {
+        viewModel.getAllVocabulary().observe(this, todos -> {
             mResultTextView.setText(todos.toString());
         });
 

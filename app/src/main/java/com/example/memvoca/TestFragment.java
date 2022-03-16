@@ -39,7 +39,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     private MainViewModel viewModel;
     private Context mContext;
 
-    private int count = 0;
+    private int count;
     ArrayList<ArrayList<String>> voca = new ArrayList<ArrayList<String>>();
 
     @Override
@@ -60,7 +60,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         }
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
 
-        viewModel.getAll().observe(getViewLifecycleOwner(), words -> {
+        viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
             voca.clear();
             ArrayList<String> id = new ArrayList<>();
             ArrayList<String> word = new ArrayList<>();
@@ -86,28 +86,38 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         });
 
         int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
+        count = PreferenceManager.getCount(mContext,"count");
 
         btn_unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewModel.insertIntoZeroBox(new ZeroBox(Integer.parseInt(voca.get(0).get(count)),
+                        voca.get(1).get(count), voca.get(2).get(count), voca.get(3).get(count),
+                        voca.get(4).get(count), voca.get(5).get(count)));
+
                 unknown_word_count.setText(String.valueOf(Integer.parseInt(unknown_word_count.getText().toString()) + 1));
-                count++;
-                changeToFront();
+                PreferenceManager.setInt(mContext,"count", count++);
 
                 if(Integer.parseInt(unknown_word_count.getText().toString())==wordTarget) {
+                    PreferenceManager.setInt(mContext,"count", count+1);
+
                     Intent intent = new Intent(getActivity(), EndPopupActivity.class);
                     startActivity(intent);
-                    //Intent intent = new Intent(getActivity(), MainActivity.class);
-                    //startActivity(intent);
                 }
+
+                changeToFront();
             }
         });
 
         btn_know.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(count)),
+                        voca.get(1).get(count), voca.get(2).get(count), voca.get(3).get(count),
+                        voca.get(4).get(count), voca.get(5).get(count)));
+
                 know_word_count.setText(String.valueOf(Integer.parseInt(know_word_count.getText().toString()) + 1));
-                count++;
+                PreferenceManager.setInt(mContext,"count", count++);
                 changeToFront();
             }
         });

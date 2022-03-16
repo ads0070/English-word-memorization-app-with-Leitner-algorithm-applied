@@ -1,12 +1,15 @@
 package com.example.memvoca;
 
-public class CardListItem {
+public class WordListItem {
 
     public Integer number;
     public String word;
     public String mean;
 
-    public CardListItem(Integer number, String word, String mean) {
+    public WordListItem() {
+    }
+
+    public WordListItem(Integer number, String word, String mean) {
         this.number = number;
         this.word = word;
         this.mean = mean;
