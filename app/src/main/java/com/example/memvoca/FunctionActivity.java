@@ -50,8 +50,8 @@ public class FunctionActivity extends AppCompatActivity {
                 transaction.replace(R.id.func_frame, settingFragment);
                 break;
             case "box_list":
-                CardListFragment cardListFragment= new CardListFragment();
-                transaction.replace(R.id.func_frame, cardListFragment);
+                WordListFragment wordListFragment = new WordListFragment();
+                transaction.replace(R.id.func_frame, wordListFragment);
                 break;
         }
         transaction.commit();

@@ -10,21 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class CardListFragment extends Fragment {
+public class WordListFragment extends Fragment {
 
     public ListView listView;
-    public CardListAdapter adapter;
+    public WordListAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_card_list, container, false);
+        View v = inflater.inflate(R.layout.fragment_word_list, container, false);
 
-        adapter = new CardListAdapter();
+        adapter = new WordListAdapter();
 
-        listView = (ListView) v.findViewById(R.id.card_list); // 미완성
+        listView = (ListView) v.findViewById(R.id.card_list);
 
-        CardListItem item = new CardListItem(1, "test", "test");
+        WordListItem item = new WordListItem(1, "test", "test");
 
         adapter.addItem(item);
 

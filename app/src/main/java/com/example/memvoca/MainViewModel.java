@@ -30,6 +30,10 @@ public class MainViewModel extends AndroidViewModel {
         new InsertAsyncTask(db.getMyDao()).execute(todo);
     }
 
+    public LiveData<List<Vocabulary>> whereId(int num){
+        return db.getMyDao().whereId(num);
+    }
+
     private static class InsertAsyncTask extends AsyncTask<Vocabulary,Void, Void> {
         private VocabularyDao vocabularyDao;
 

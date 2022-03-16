@@ -13,6 +13,9 @@ public interface VocabularyDao {
     @Query("SELECT * FROM Vocabulary")
     LiveData<List<Vocabulary>> getAll();
 
+    @Query("SELECT * FROM Vocabulary WHERE id = :num")
+    LiveData<List<Vocabulary>> whereId(int num);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Vocabulary vocabulary);
 }
