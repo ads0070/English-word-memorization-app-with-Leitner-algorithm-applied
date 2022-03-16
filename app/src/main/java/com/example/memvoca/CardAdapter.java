@@ -43,7 +43,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 1000;
+        return voca.get(1).size();
     }
 
     @Override
@@ -64,6 +64,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             pronTv = itemView.findViewById(R.id.pronunciation);
         }
         public void setTv(ArrayList<ArrayList<String>> voca, int position){
+            pageTv.setText(position+1+"/"+voca.get(1).size());
             wordTv.setText(voca.get(1).get(position));
             pronTv.setText(voca.get(2).get(position));
         }

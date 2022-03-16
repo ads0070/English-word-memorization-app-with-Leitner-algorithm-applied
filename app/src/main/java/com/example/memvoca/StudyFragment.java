@@ -48,7 +48,7 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
         }
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
 
-        viewModel.getAll().observe(getViewLifecycleOwner(), words -> {
+        viewModel.getAllZeroBox().observe(getViewLifecycleOwner(), words -> {
             voca.clear();
             ArrayList<String> id = new ArrayList<>();
             ArrayList<String> word = new ArrayList<>();
@@ -95,6 +95,7 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 count = position;
+                System.out.println(count);
             }
         });
         viewPager.setPageTransformer(new ViewPager2.PageTransformer() {
