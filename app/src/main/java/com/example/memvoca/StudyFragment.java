@@ -95,7 +95,6 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 count = position;
-                System.out.println(count);
             }
         });
         viewPager.setPageTransformer(new ViewPager2.PageTransformer() {

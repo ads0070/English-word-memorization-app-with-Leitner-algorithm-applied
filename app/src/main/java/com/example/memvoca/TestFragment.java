@@ -99,7 +99,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 PreferenceManager.setInt(mContext,"count", count++);
 
                 if(Integer.parseInt(unknown_word_count.getText().toString())==wordTarget) {
-                    PreferenceManager.setInt(mContext,"count", count+1);
+                    PreferenceManager.setInt(mContext,"count", count);
 
                     Intent intent = new Intent(getActivity(), EndPopupActivity.class);
                     startActivity(intent);
