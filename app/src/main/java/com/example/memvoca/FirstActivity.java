@@ -85,7 +85,9 @@ public class FirstActivity extends AppCompatActivity {
                         PreferenceManager.setInt(mContext, "day4_target_setting", Integer.parseInt(mDayTarget4.getText().toString()));
                         PreferenceManager.setInt(mContext, "day5_target_setting", Integer.parseInt(mDayTarget5.getText().toString()));
 
-                        Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+                        Intent intent = new Intent(FirstActivity.this, FunctionActivity.class);
+                        intent.putExtra("title","테스트");
+                        intent.putExtra("type","test");
                         startActivity(intent);
                     }
                 }
