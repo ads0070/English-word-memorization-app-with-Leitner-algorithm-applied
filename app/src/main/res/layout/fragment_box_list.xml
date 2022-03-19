@@ -125,6 +125,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/box3_cycle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -162,6 +163,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/box5_cycle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -202,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="1 일"
+            android:text="3 일"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:autoSizeTextType="uniform"
@@ -236,6 +238,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/box4_cycle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

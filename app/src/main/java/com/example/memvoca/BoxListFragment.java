@@ -1,5 +1,6 @@
 package com.example.memvoca;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class BoxListFragment extends Fragment implements View.OnClickListener {
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class BoxListFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_box_list, container, false);
+        mContext = getContext();
 
         LinearLayout box1 = (LinearLayout)v.findViewById(R.id.box1);
         LinearLayout box2 = (LinearLayout)v.findViewById(R.id.box2);
@@ -28,6 +32,13 @@ public class BoxListFragment extends Fragment implements View.OnClickListener {
         LinearLayout box4 = (LinearLayout)v.findViewById(R.id.box4);
         LinearLayout box5 = (LinearLayout)v.findViewById(R.id.box5);
         LinearLayout finish = (LinearLayout)v.findViewById(R.id.finish);
+        TextView box3_cycle = (TextView) v.findViewById(R.id.box3_cycle);
+        TextView box4_cycle = (TextView) v.findViewById(R.id.box4_cycle);
+        TextView box5_cycle = (TextView) v.findViewById(R.id.box5_cycle);
+
+        box3_cycle.setText(Integer.toString(PreferenceManager.getInt(mContext, "memory_cycle_1"))+" 일");
+        box4_cycle.setText(Integer.toString(PreferenceManager.getInt(mContext, "memory_cycle_2"))+" 일");
+        box5_cycle.setText(Integer.toString(PreferenceManager.getInt(mContext, "memory_cycle_3"))+" 일");
 
         box1.setOnClickListener(this);
         box2.setOnClickListener(this);

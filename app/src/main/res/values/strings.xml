@@ -12,5 +12,12 @@
     <string name="day_target4">16</string>
     <string name="day_target5">30</string>
 
+    <string-array name="spinner_array">
+        <item>선택하세요</item>
+        <item>빠른 암기형</item>
+        <item>기본 암기형</item>
+        <item>느린 암기형</item>
+    </string-array>
+
 
 </resources>

@@ -41,18 +41,25 @@
         app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_tv_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.82" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.83" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_target_end"
@@ -175,101 +182,28 @@
             android:orientation="horizontal"
             android:weightSum="5">
 
-            <EditText
-                android:id="@+id/target_day1"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="32dp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_underline"
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                android:text="@string/day_target1"
-                android:maxLength="2"
-                android:enabled="false"
-                android:imeOptions="actionNext"/>
+            <Spinner
+                android:id="@+id/memory_cycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-            <EditText
-                android:id="@+id/target_day2"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="32dp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_underline"
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                android:text="@string/day_target2"
-                android:maxLength="2"
-                android:enabled="false"
-                android:imeOptions="actionNext"/>
-
-            <EditText
-                android:id="@+id/target_day3"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="32dp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/tv_underline"
-                android:gravity="center"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                android:text="@string/day_target3"
-                android:maxLength="2"
-                android:enabled="false"
-                android:imeOptions="actionNext"/>
-
-            <EditText
-                android:id="@+id/target_day4"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="32dp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:gravity="center"
-                android:background="@drawable/tv_underline"
-                android:layout_marginEnd="10dp"
-                android:textColor="@color/black"
-                android:text="@string/day_target4"
-                android:maxLength="2"
-                android:enabled="false"
-                android:imeOptions="actionNext"/>
-
-            <EditText
-                android:id="@+id/target_day5"
-                android:inputType="number"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:autoSizeMaxTextSize="32dp"
-                android:autoSizeMinTextSize="10sp"
-                android:autoSizeStepGranularity="2sp"
-                android:autoSizeTextType="uniform"
-                android:gravity="center"
-                android:background="@drawable/tv_underline"
-                android:textColor="@color/black"
-                android:text="@string/day_target5"
-                android:maxLength="2"
-                android:enabled="false"
-                android:imeOptions="actionDone"/>
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_memory_cycle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintTop_toTopOf="@id/guideline_target_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_tv_bottom"
+        android:gravity="fill"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="15sp"
+        android:autoSizeMaxTextSize="18sp"
+        android:textColor="@color/black">
+    </TextView>
 
     <LinearLayout
         android:layout_width="0dp"

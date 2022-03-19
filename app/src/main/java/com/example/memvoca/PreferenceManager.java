@@ -55,6 +55,7 @@ public class PreferenceManager {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt(key, DEFAULT_VALUE_INT);
     }
+
     public static int getCount(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt(key, DEFAULT_COUNT);
