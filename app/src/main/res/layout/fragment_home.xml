@@ -86,6 +86,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:id="@+id/Day"
         app:layout_constraintTop_toBottomOf="@id/guideline_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_Tgap_top"
         app:layout_constraintEnd_toStartOf="@id/guideline_Lgap_left"

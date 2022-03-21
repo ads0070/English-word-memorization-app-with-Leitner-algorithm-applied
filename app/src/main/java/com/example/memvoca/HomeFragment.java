@@ -33,10 +33,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         LinearLayout box_layout = (LinearLayout)v.findViewById(R.id.box_layout);
         LinearLayout test_layout = (LinearLayout)v.findViewById(R.id.test_layout);
         LinearLayout setting_layout = (LinearLayout)v.findViewById(R.id.setting_layout);
+        LinearLayout test = (LinearLayout)v.findViewById(R.id.Day);
 
         box_layout.setOnClickListener(this);
         test_layout.setOnClickListener(this);
         setting_layout.setOnClickListener(this);
+        test.setOnClickListener(this);
 
         return v;
     }
@@ -61,6 +63,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("type","setting");
                 startActivity(intent);
                 break;
+            case R.id.Day:
+                Intent t = new Intent(getActivity(), AlarmActivity.class);
+                startActivity(t);
         }
     }
 }
