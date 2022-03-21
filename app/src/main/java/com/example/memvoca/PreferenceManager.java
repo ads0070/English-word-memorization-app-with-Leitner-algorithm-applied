@@ -8,6 +8,7 @@ public class PreferenceManager {
     private static final String DEFAULT_VALUE_STRING = "";
     private static final boolean DEFAULT_VALUE_BOOLEAN = false;
     private static final int DEFAULT_VALUE_INT = -1;
+    private static final int DEFAULT_VALUE_LONG = -1;
     private static final int DEFAULT_COUNT = 0;
 
     private static SharedPreferences getPreferences(Context context) {
@@ -38,6 +39,14 @@ public class PreferenceManager {
         editor.apply();
     }
 
+    /** Long 값 저장 */
+    public static void setLong(Context context, String key, long value) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(key, value);
+        editor.apply();
+    }
+
     /** String 값 로드 */
     public static String getString(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
@@ -59,6 +68,12 @@ public class PreferenceManager {
     public static int getCount(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt(key, DEFAULT_COUNT);
+    }
+
+    /** long 값 로드 */
+    public static long getLong(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getLong(key, DEFAULT_VALUE_LONG);
     }
 
     /** 키 값 삭제 */

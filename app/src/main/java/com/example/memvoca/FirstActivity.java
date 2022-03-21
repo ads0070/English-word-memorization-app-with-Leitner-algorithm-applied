@@ -126,14 +126,15 @@ public class FirstActivity extends AppCompatActivity {
                             PreferenceManager.setInt(mContext, "memory_cycle_2", Cycle[1]);
                             PreferenceManager.setInt(mContext, "memory_cycle_3", Cycle[2]);
 
-                            Intent intent = new Intent(FirstActivity.this, MainActivity.class);
-                            startActivity(intent);
+                        Intent intent = new Intent(FirstActivity.this, FunctionActivity.class);
+                        intent.putExtra("title","테스트");
+                        intent.putExtra("type","test");
+                        startActivity(intent);
                         }
                     }
                 }
             }
         });
-
     }
 
     @Override
