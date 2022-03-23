@@ -65,15 +65,16 @@ public class PreferenceManager {
         return prefs.getInt(key, DEFAULT_VALUE_INT);
     }
 
-    public static int getCount(Context context, String key) {
-        SharedPreferences prefs = getPreferences(context);
-        return prefs.getInt(key, DEFAULT_COUNT);
-    }
-
     /** long 값 로드 */
     public static long getLong(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getLong(key, DEFAULT_VALUE_LONG);
+    }
+
+    /** DB 인덱스 초기값 로드 */
+    public static int getNum(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getInt(key, DEFAULT_COUNT);
     }
 
     /** 키 값 삭제 */

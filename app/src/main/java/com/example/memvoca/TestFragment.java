@@ -1,9 +1,7 @@
 package com.example.memvoca;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +13,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
 public class TestFragment extends Fragment implements View.OnClickListener, ViewModelStoreOwner {
     private View view;
@@ -58,7 +48,9 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         if(viewModelFactory == null){
             viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
         }
+
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
+        Intent intent = new Intent(getActivity(), EndPopupActivity.class);
 
         viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
             voca.clear();
@@ -82,11 +74,18 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
             voca.add(meaning);
             voca.add(etymology);
             voca.add(sod);
-            changeToFront();
+
+            PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
+
+            if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {
+                startActivity(intent);
+            } else {
+                changeToFront();
+            }
         });
 
         int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
-        count = PreferenceManager.getCount(mContext,"count");
+        count = PreferenceManager.getNum(mContext,"count");
 
         btn_unknown.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,12 +99,14 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
 
                 if(Integer.parseInt(unknown_word_count.getText().toString())==wordTarget) {
                     PreferenceManager.setInt(mContext,"count", count);
-
-                    Intent intent = new Intent(getActivity(), EndPopupActivity.class);
                     startActivity(intent);
                 }
 
-                changeToFront();
+                if(count >= PreferenceManager.getInt(mContext, "total_count")) {
+                    startActivity(intent);
+                } else {
+                    changeToFront();
+                }
             }
         });
 
@@ -118,7 +119,12 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
 
                 know_word_count.setText(String.valueOf(Integer.parseInt(know_word_count.getText().toString()) + 1));
                 PreferenceManager.setInt(mContext,"count", count++);
-                changeToFront();
+
+                if(count >= PreferenceManager.getInt(mContext, "total_count")) {
+                    startActivity(intent);
+                } else {
+                    changeToFront();
+                }
             }
         });
 
