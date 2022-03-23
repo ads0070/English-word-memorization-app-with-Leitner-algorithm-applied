@@ -3,12 +3,14 @@ package com.example.memvoca;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Calendar;
+
 public class PreferenceManager {
     public static final String PREFERENCES_NAME = "custom_preference";
     private static final String DEFAULT_VALUE_STRING = "";
     private static final boolean DEFAULT_VALUE_BOOLEAN = false;
     private static final int DEFAULT_VALUE_INT = -1;
-    private static final int DEFAULT_VALUE_LONG = -1;
+    private static final long DEFAULT_VALUE_LONG = Calendar.getInstance().getTimeInMillis();
     private static final int DEFAULT_COUNT = 0;
 
     private static SharedPreferences getPreferences(Context context) {

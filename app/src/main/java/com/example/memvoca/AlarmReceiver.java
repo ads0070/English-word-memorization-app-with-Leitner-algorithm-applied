@@ -1,29 +1,17 @@
 package com.example.memvoca;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.widget.Toast;
-
 import androidx.core.app.NotificationCompat;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 
 public class AlarmReceiver extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
-
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(context, MainActivity.class);
 
@@ -37,7 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
 
         //OREO API 26 이상에서는 채널 필요
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground); //mipmap 사용시 Oreo 이상에서 시스템 UI 에러남
+        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
 
         String channelName ="매일 알람 채널";
         String description = "매일 정해진 시간에 알람합니다.";
@@ -51,13 +39,15 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManager.createNotificationChannel(channel);
         }
 
+        String name = PreferenceManager.getString(context, "user_name");
+
         builder.setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
 
                 .setTicker("{Time to watch some cool stuff!}")
-                .setContentTitle("상태바 드래그시 보이는 타이틀")
-                .setContentText("상태바 드래그시 보이는 서브타이틀")
+                .setContentTitle(name + "님 영단어 시험을 볼 시간입니다!")
+                //.setContentText("상태바 드래그시 보이는 서브타이틀")
                 .setContentInfo("INFO")
                 .setContentIntent(pendingI);
 
@@ -72,13 +62,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             nextNotifyTime.add(Calendar.DATE, 1);
 
             //  Preference에 설정한 값 저장
-            SharedPreferences.Editor editor = context.getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
-            editor.putLong("nextNotifyTime", nextNotifyTime.getTimeInMillis());
-            editor.apply();
-
-            Date currentDateTime = nextNotifyTime.getTime();
-            String date_text = new SimpleDateFormat("yyyy년 MM월 dd일 EE요일 a hh시 mm분 ", Locale.getDefault()).format(currentDateTime);
-            Toast.makeText(context.getApplicationContext(),"다음 알람은 " + date_text + "으로 알람이 설정되었습니다!", Toast.LENGTH_SHORT).show();
+            PreferenceManager.setLong(context, "nextNotifyTime", nextNotifyTime.getTimeInMillis());
         }
     }
 }

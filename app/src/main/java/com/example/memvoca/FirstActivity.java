@@ -1,7 +1,11 @@
 package com.example.memvoca;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -17,10 +21,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -32,7 +38,9 @@ public class FirstActivity extends AppCompatActivity {
     private EditText mWordTarget;
     private Spinner mSpinner;
     private TextView tv_cycle;
+    private TextView tv_time;
     private int[] Cycle;
+    private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,16 @@ public class FirstActivity extends AppCompatActivity {
         mWordTarget=(EditText)findViewById(R.id.target_word_count);
         mSpinner = (Spinner) findViewById(R.id.memory_cycle);
         tv_cycle = (TextView) findViewById(R.id.tv_memory_cycle);
+        tv_time = (TextView) findViewById(R.id.test_time);
+        mConfirmBtn.setEnabled(false);
+
+        tv_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, AlarmPopupActivity.class);
+                startActivityForResult(intent, 2);
+            }
+        });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -55,25 +73,37 @@ public class FirstActivity extends AppCompatActivity {
                 switch (i){
                     case 0:
                         tv_cycle.setText("");
+                        mConfirmBtn.setEnabled(false);
+                        mConfirmBtn.setBackgroundResource(R.drawable.btn_disabled_confirm);
+                        mConfirmBtn.setTextColor(Color.parseColor("#B6BACB"));
                         break;
                     case 1:
                         tv_cycle.setText("\t1일\t\t3일\t\t5일\t\t13일\t\t28일\t");
                         Cycle = new int[]{5, 13, 28};
+                        mConfirmBtn.setEnabled(true);
+                        mConfirmBtn.setBackgroundResource(R.drawable.btn_activated_confirm);
+                        mConfirmBtn.setTextColor(Color.WHITE);
                         break;
                     case 2:
                         tv_cycle.setText("\t1일\t\t3일\t\t7일\t\t15일\t\t30일\t");
                         Cycle = new int[]{7, 15, 30};
+                        mConfirmBtn.setEnabled(true);
+                        mConfirmBtn.setBackgroundResource(R.drawable.btn_activated_confirm);
+                        mConfirmBtn.setTextColor(Color.WHITE);
                         break;
                     case 3:
                         tv_cycle.setText("\t1일\t\t3일\t\t10일\t\t17일\t\t35일\t");
                         Cycle = new int[]{10, 17, 35};
+                        mConfirmBtn.setEnabled(true);
+                        mConfirmBtn.setBackgroundResource(R.drawable.btn_activated_confirm);
+                        mConfirmBtn.setTextColor(Color.WHITE);
                         break;
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                mConfirmBtn.setClickable(false);
+                mConfirmBtn.setEnabled(false);
                 mConfirmBtn.setBackgroundResource(R.drawable.btn_disabled_confirm);
                 mConfirmBtn.setTextColor(Color.parseColor("#B6BACB"));
             }
@@ -85,12 +115,8 @@ public class FirstActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(count > 0) {
-                    mConfirmBtn.setClickable(true);
-                    mConfirmBtn.setBackgroundResource(R.drawable.btn_activated_confirm);
-                    mConfirmBtn.setTextColor(Color.WHITE);
-                } else {
-                    mConfirmBtn.setClickable(false);
+                if(count <= 0) {
+                    mConfirmBtn.setEnabled(false);
                     mConfirmBtn.setBackgroundResource(R.drawable.btn_disabled_confirm);
                     mConfirmBtn.setTextColor(Color.parseColor("#B6BACB"));
                 }
@@ -103,33 +129,47 @@ public class FirstActivity extends AppCompatActivity {
         mConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int mWord = Integer.parseInt(mWordTarget.getText().toString());
+                String mWord = mWordTarget.getText().toString();
                 String mName = mUserName.getText().toString();
                 String mCycle = tv_cycle.getText().toString();
+                String mTestTime = tv_time.getText().toString();
 
                 if (mName.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "닉네임을 입력해 주세요.", Toast.LENGTH_LONG).show();
                     mUserName.requestFocus();
                 } else {
-                    if (mWord < 20 || 100 < mWord) {
-                        Toast.makeText(getApplicationContext(), "20 ~ 100개 사이로 정해주세요.", Toast.LENGTH_LONG).show();
+                    if (mWord.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "목표치를 입력해 주세요.", Toast.LENGTH_LONG).show();
                         mWordTarget.requestFocus();
                         mWordTarget.selectAll();
                     } else {
-                        if (mCycle.equals("")) {
-                            Toast.makeText(getApplicationContext(), "주기를 선택해 주세요.", Toast.LENGTH_LONG).show();
+                        if (Integer.parseInt(mWord) < 20 || 100 < Integer.parseInt(mWord)) {
+                            Toast.makeText(getApplicationContext(), "20 ~ 100개 사이로 정해주세요.", Toast.LENGTH_LONG).show();
                             mWordTarget.requestFocus();
-                        }else{
-                            PreferenceManager.setString(mContext, "user_name", mName);
-                            PreferenceManager.setInt(mContext, "word_target_setting", mWord);
-                            PreferenceManager.setInt(mContext, "memory_cycle_1", Cycle[0]);
-                            PreferenceManager.setInt(mContext, "memory_cycle_2", Cycle[1]);
-                            PreferenceManager.setInt(mContext, "memory_cycle_3", Cycle[2]);
+                            mWordTarget.selectAll();
+                        } else {
+                            if (mTestTime.equals("")) {
+                                Toast.makeText(getApplicationContext(), "테스트 알림 시간을 설정해 주세요.", Toast.LENGTH_LONG).show();
+                            } else {
+                                if (mCycle.equals("")) {
+                                    Toast.makeText(getApplicationContext(), "주기를 선택해 주세요.", Toast.LENGTH_LONG).show();
+                                }else{
+                                    PreferenceManager.setString(mContext, "user_name", mName);
+                                    PreferenceManager.setInt(mContext, "word_target_setting", Integer.parseInt(mWord));
+                                    PreferenceManager.setInt(mContext, "memory_cycle_1", Cycle[0]);
+                                    PreferenceManager.setInt(mContext, "memory_cycle_2", Cycle[1]);
+                                    PreferenceManager.setInt(mContext, "memory_cycle_3", Cycle[2]);
+                                    PreferenceManager.setLong(mContext, "nextNotifyTime", (long)calendar.getTimeInMillis());
 
-                        Intent intent = new Intent(FirstActivity.this, FunctionActivity.class);
-                        intent.putExtra("title","테스트");
-                        intent.putExtra("type","test");
-                        startActivity(intent);
+                                    diaryNotification(calendar);
+
+                                    Intent intent = new Intent(FirstActivity.this, FunctionActivity.class);
+                                    intent.putExtra("title","테스트");
+                                    intent.putExtra("type","test");
+                                    startActivity(intent);
+                                }
+                            }
+
                         }
                     }
                 }
@@ -166,5 +206,47 @@ public class FirstActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                calendar = new GregorianCalendar();
+                long millis = data.getExtras().getLong("calendar");
+                calendar.setTimeInMillis(millis);
+
+                Date date = calendar.getTime();
+                String date_text = new SimpleDateFormat("a hh시 mm분 ", Locale.getDefault()).format(date);
+                tv_time.setText(date_text);
+            }
+        }
+    }
+
+    void diaryNotification(Calendar calendar)
+    {
+        boolean dailyNotify = true; // 무조건 알람을 사용
+
+        PackageManager pm = this.getPackageManager();
+        ComponentName receiver = new ComponentName(this, DeviceBootReceiver.class);
+        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        // 사용자가 매일 알람을 허용했다면
+        if (alarmManager != null) {
+
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                    AlarmManager.INTERVAL_DAY, pendingIntent);
+
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
+
+        // 부팅 후 실행되는 리시버 사용가능하게 설정
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
     }
 }
