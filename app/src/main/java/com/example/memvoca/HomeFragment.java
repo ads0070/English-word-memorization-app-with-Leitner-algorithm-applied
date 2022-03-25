@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -30,6 +32,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         LinearLayout box_layout = (LinearLayout)v.findViewById(R.id.box_layout);
         LinearLayout test_layout = (LinearLayout)v.findViewById(R.id.test_layout);
         LinearLayout setting_layout = (LinearLayout)v.findViewById(R.id.setting_layout);
+        TextView progress = (TextView) v.findViewById(R.id.nick_name);
+
+        String name = PreferenceManager.getString(getContext(), "user_name");
+        String progress_text = "현재 " + name + "님의 진척도는?";
+        progress.setText(progress_text);
 
         box_layout.setOnClickListener(this);
         test_layout.setOnClickListener(this);

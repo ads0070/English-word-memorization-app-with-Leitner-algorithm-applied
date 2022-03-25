@@ -66,7 +66,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
 
                 switch (type) {
                     case "reset_name":
-                        PreferenceManager.setString(mContext, "user_name", result+"님");
+                        PreferenceManager.setString(mContext, "user_name", result);
                         break;
                     case "reset_word":
                         PreferenceManager.setInt(mContext, "word_target_setting", Integer.parseInt(result));

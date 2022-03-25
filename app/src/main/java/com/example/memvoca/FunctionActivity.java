@@ -1,5 +1,7 @@
 package com.example.memvoca;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +14,13 @@ public class FunctionActivity extends AppCompatActivity {
 
     private TextView titleTv;
     private ImageButton backBtn;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function);
+        mContext = this;
 
         Intent intent = getIntent();
 
@@ -24,7 +28,9 @@ public class FunctionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed(); //뒤로가기 설정
+                Intent intent = new Intent(FunctionActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
