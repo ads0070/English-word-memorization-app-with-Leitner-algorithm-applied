@@ -14,7 +14,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
+    private Context mContext;
+    private static final long ONE_DAY = 24*60*60*1000;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -23,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getContext();
     }
 
     @Override
@@ -38,6 +47,38 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         test_layout.setOnClickListener(this);
         setting_layout.setOnClickListener(this);
 
+        // 어플 최초 시작날짜 불러오기
+        String firstDay = PreferenceManager.getFirstDay(mContext, "first_day");
+        // 오늘 날짜 지정
+        Calendar toDay = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        toDay.setTime(new Date());
+        // 어플 시작날짜(String) 설정 되어있으면 Calendar(yyyy-MM-dd) 전환
+        if (!firstDay.equals("None")){
+            Calendar targetDay = Calendar.getInstance();
+            try {
+                targetDay.setTime(df.parse(firstDay));
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+            // 밀리초로 변환 -> 차이 계산 -> 정수로 변환
+            long dday = toDay.getTimeInMillis() - targetDay.getTimeInMillis();
+            long Dday = (dday/ONE_DAY)+1;
+
+            TextView tv_Dday = v.findViewById(R.id.tv_Dday);
+            tv_Dday.setText("Day "+Dday);
+            // D-day 계산 후 PM에 저장 및 최신화
+            PreferenceManager.setInt(mContext, "D-day", Long.valueOf(Dday).intValue());
+
+
+            //테스트 코드 추후 지우고 push 할 것
+//            System.out.println("cal : "+df.format(targetDay.getTime()));
+//            System.out.println("cal2 : "+df.format(toDay.getTime()));
+//            System.out.println(Dday);
+//            System.out.println(PreferenceManager.getInt(mContext, "D-day"));
+//            System.out.println("test"+toDay.get(Calendar.DATE));
+        }
+
         return v;
     }
 
@@ -51,7 +92,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.test_layout:
-                intent.putExtra("title","테스트");
+                intent.putExtra("title","테스트 목록");
                 intent.putExtra("type","test");
                 startActivity(intent);
                 break;

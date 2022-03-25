@@ -21,6 +21,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -106,6 +111,13 @@ public class FirstActivity extends AppCompatActivity {
                 int mWord = Integer.parseInt(mWordTarget.getText().toString());
                 String mName = mUserName.getText().toString();
                 String mCycle = tv_cycle.getText().toString();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(new Date());
+
+                //날짜 형식 지정
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String firstDay = df.format(cal.getTime());
+
 
                 if (mName.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요.", Toast.LENGTH_LONG).show();
@@ -125,6 +137,7 @@ public class FirstActivity extends AppCompatActivity {
                             PreferenceManager.setInt(mContext, "memory_cycle_1", Cycle[0]);
                             PreferenceManager.setInt(mContext, "memory_cycle_2", Cycle[1]);
                             PreferenceManager.setInt(mContext, "memory_cycle_3", Cycle[2]);
+                            PreferenceManager.setString(mContext, "first_day", firstDay);
 
                             Intent intent = new Intent(FirstActivity.this, MainActivity.class);
                             startActivity(intent);

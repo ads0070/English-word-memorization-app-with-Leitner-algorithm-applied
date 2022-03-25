@@ -30,6 +30,7 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
     private ViewGroup viewGroup;
     private CardAdapter cardAdapter;
     private ToggleButton button;
+    private Context mContext;
 
     private ViewModelProvider.AndroidViewModelFactory viewModelFactory;
     private ViewModelStore viewModelStore = new ViewModelStore();
@@ -42,6 +43,10 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_study, container, false);
+
+        mContext = getContext();
+        TextView tv_day = viewGroup.findViewById(R.id.day_count);
+        tv_day.setText("Day "+PreferenceManager.getInt(mContext, "D-day")+" 공부");
 
         if(viewModelFactory == null){
             viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
