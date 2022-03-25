@@ -300,6 +300,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/wise_saying_eng"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
@@ -320,6 +321,7 @@
             android:weightSum="3">
 
             <TextView
+                android:id="@+id/wise_saying_kr"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -332,6 +334,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/great_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
