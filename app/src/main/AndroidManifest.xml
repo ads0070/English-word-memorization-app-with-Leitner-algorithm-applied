@@ -32,7 +32,7 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".TestAlarmPopupActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
-
+        <activity android:name=".StudyAlarmActivity"/>
         <receiver android:name=".TestAlarmBootReceiver"
             android:enabled="false"
             android:exported="false">
@@ -40,7 +40,15 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".StudyAlarmBootReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
         <receiver android:name=".TestAlarmReceiver" />
+        <receiver android:name=".StudyAlarmReceiver" />
 
     </application>
 

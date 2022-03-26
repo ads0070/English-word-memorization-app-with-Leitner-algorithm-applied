@@ -12,7 +12,7 @@ import java.util.Objects;
 public class TestAlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
 
             // on device boot complete, reset the alarm
             Intent alarmIntent = new Intent(context, TestAlarmReceiver.class);

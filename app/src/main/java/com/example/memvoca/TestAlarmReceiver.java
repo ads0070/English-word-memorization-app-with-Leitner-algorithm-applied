@@ -26,8 +26,8 @@ public class TestAlarmReceiver extends BroadcastReceiver {
         //OREO API 26 이상에서는 채널 필요
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
 
-        String channelName ="매일 알람 채널";
-        String description = "매일 정해진 시간에 알람합니다.";
+        String channelName ="일일 알림 채널";
+        String description = "일일 테스트 알림 채널";
         int importance = NotificationManager.IMPORTANCE_HIGH; //소리와 알림메시지를 같이 보여줌
 
         NotificationChannel channel = new NotificationChannel("default", channelName, importance);
@@ -43,7 +43,6 @@ public class TestAlarmReceiver extends BroadcastReceiver {
         builder.setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-
                 .setTicker("{Time to watch some cool stuff!}")
                 .setContentTitle(name + "님 영단어 시험을 볼 시간입니다!")
                 //.setContentText("상태바 드래그시 보이는 서브타이틀")
@@ -53,7 +52,7 @@ public class TestAlarmReceiver extends BroadcastReceiver {
         if (notificationManager != null) {
 
             // 노티피케이션 동작시킴
-            notificationManager.notify(1234, builder.build());
+            notificationManager.notify(1111, builder.build());
 
             Calendar nextNotifyTime = Calendar.getInstance();
 

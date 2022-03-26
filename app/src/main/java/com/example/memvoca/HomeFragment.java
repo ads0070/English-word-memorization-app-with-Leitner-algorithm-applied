@@ -81,6 +81,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         test_layout.setOnClickListener(this);
         setting_layout.setOnClickListener(this);
 
+        progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), StudyAlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
     }
 

@@ -61,7 +61,7 @@ public class PreferenceManager {
         return prefs.getBoolean(key, DEFAULT_VALUE_BOOLEAN);
     }
 
-    /** int 값 로드 */
+    /** int 값 로드 (초기값 : -1) */
     public static int getInt(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt(key, DEFAULT_VALUE_INT);
@@ -73,7 +73,7 @@ public class PreferenceManager {
         return prefs.getLong(key, DEFAULT_VALUE_LONG);
     }
 
-    /** DB 인덱스 초기값 로드 */
+    /** int 값 로드 (초기값 : 0) */
     public static int getNum(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt(key, DEFAULT_COUNT);
