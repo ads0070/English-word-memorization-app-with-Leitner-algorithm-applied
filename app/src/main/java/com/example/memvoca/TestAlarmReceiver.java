@@ -9,7 +9,7 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import java.util.Calendar;
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class TestAlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -20,7 +20,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         PendingIntent pendingI = PendingIntent.getActivity(context, 0,
                 notificationIntent, PendingIntent.FLAG_IMMUTABLE);
-
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
 

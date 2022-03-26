@@ -59,7 +59,7 @@ public class FirstActivity extends AppCompatActivity {
         tv_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FirstActivity.this, AlarmPopupActivity.class);
+                Intent intent = new Intent(FirstActivity.this, TestAlarmPopupActivity.class);
                 startActivityForResult(intent, 2);
             }
         });
@@ -230,8 +230,8 @@ public class FirstActivity extends AppCompatActivity {
         boolean dailyNotify = true; // 무조건 알람을 사용
 
         PackageManager pm = this.getPackageManager();
-        ComponentName receiver = new ComponentName(this, DeviceBootReceiver.class);
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        ComponentName receiver = new ComponentName(this, TestAlarmBootReceiver.class);
+        Intent alarmIntent = new Intent(this, TestAlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 

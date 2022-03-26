@@ -9,13 +9,13 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
-public class DeviceBootReceiver extends BroadcastReceiver {
+public class TestAlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.equals(intent.getAction(), "android.intent.action.BOOT_COMPLETED")) {
 
             // on device boot complete, reset the alarm
-            Intent alarmIntent = new Intent(context, AlarmReceiver.class);
+            Intent alarmIntent = new Intent(context, TestAlarmReceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
 
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

@@ -30,17 +30,17 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".EndPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
-        <activity android:name=".AlarmPopupActivity"
+        <activity android:name=".TestAlarmPopupActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
-        <receiver android:name=".DeviceBootReceiver"
+        <receiver android:name=".TestAlarmBootReceiver"
             android:enabled="false"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".TestAlarmReceiver" />
 
     </application>
 

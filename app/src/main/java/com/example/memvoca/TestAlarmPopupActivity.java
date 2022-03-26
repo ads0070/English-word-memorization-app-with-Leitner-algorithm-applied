@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class AlarmPopupActivity extends Activity {
+public class TestAlarmPopupActivity extends Activity {
     private Context mContext;
     private TimePicker picker;
 
