@@ -1,4 +1,4 @@
-package com.example.memvoca;
+package com.example.memvoca.database;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,10 +6,6 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
-import com.example.memvoca.Vocabulary;
-import com.example.memvoca.VocabularyDao;
-import com.example.memvoca.VocabularyDatabase;
 
 import java.util.List;
 

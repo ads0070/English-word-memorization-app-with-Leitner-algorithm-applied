@@ -3,25 +3,25 @@ package com.example.memvoca;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.memvoca.card.CardAdapter;
+import com.example.memvoca.card.CardBackFragment;
+import com.example.memvoca.card.CardFrontFragment;
+import com.example.memvoca.database.MainViewModel;
 
 import java.util.ArrayList;
 

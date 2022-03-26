@@ -1,4 +1,4 @@
-package com.example.memvoca;
+package com.example.memvoca.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -10,13 +10,13 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface FinishBoxDao {
-    @Query("SELECT * FROM FinishBox")
-    LiveData<List<FinishBox>> getAll();
+public interface ZeroBoxDao {
+    @Query("SELECT * FROM ZeroBox")
+    LiveData<List<ZeroBox>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(FinishBox finishBox);
+    void insert(ZeroBox zeroBox);
 
     @Delete
-    void delete(FinishBox finishBox);
+    void delete(ZeroBox zeroBox);
 }

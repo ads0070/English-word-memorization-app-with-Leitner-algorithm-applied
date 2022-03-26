@@ -30,8 +30,6 @@ public class TestListFragment extends Fragment implements View.OnClickListener{
         int cycle2 = PreferenceManager.getInt(mContext, "memory_cycle_2");
         int cycle3 = PreferenceManager.getInt(mContext, "memory_cycle_3");
 
-        System.out.println("c1 = " + cycle1 + " c2 = "+cycle2+" c3 = "+cycle3);
-
         LinearLayout box1 = (LinearLayout)v.findViewById(R.id.box1);
         LinearLayout box2 = (LinearLayout)v.findViewById(R.id.box2);
         LinearLayout box3 = (LinearLayout)v.findViewById(R.id.box3);

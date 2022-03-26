@@ -18,6 +18,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import com.example.memvoca.card.CardBackFragment;
+import com.example.memvoca.card.CardFrontFragment;
+import com.example.memvoca.database.FinishBox;
+import com.example.memvoca.database.MainViewModel;
+import com.example.memvoca.database.ZeroBox;
+
 import java.util.ArrayList;
 
 public class TestFragment extends Fragment implements View.OnClickListener, ViewModelStoreOwner {

@@ -1,11 +1,10 @@
-package com.example.memvoca;
+package com.example.memvoca.word;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
-import java.util.ArrayList;
+import com.example.memvoca.R;
+import com.example.memvoca.database.MainViewModel;
 
 public class WordListFragment extends Fragment {
 

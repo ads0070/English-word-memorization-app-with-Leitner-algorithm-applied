@@ -1,4 +1,4 @@
-package com.example.memvoca;
+package com.example.memvoca.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

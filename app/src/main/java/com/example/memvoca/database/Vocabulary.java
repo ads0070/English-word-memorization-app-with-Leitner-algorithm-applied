@@ -1,4 +1,4 @@
-package com.example.memvoca;
+package com.example.memvoca.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -6,8 +6,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class FinishBox {
-    public FinishBox(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
+public class Vocabulary {
+
+    public Vocabulary(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
         this.id = id;
         this.word = word;
         this.pronunciation = pronunciation;
@@ -32,6 +33,7 @@ public class FinishBox {
     @ColumnInfo(name = "etymology")
     private String etymology;
 
+    // Similar/Opposite/Derived
     @ColumnInfo(name = "sod")
     private String sod;
 
