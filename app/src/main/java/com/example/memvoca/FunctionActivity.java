@@ -45,9 +45,9 @@ public class FunctionActivity extends AppCompatActivity {
                 transaction.replace(R.id.func_frame, boxListFragment);
                 break;
             case "test":
-                TestFragment testFragment= new TestFragment();
-                transaction.replace(R.id.func_frame, testFragment);
-                backBtn.setVisibility(View.INVISIBLE);
+                TestListFragment testListFragment= new TestListFragment();
+                transaction.replace(R.id.func_frame, testListFragment);
+//                backBtn.setVisibility(View.INVISIBLE);
                 break;
             case "setting":
                 SettingFragment settingFragment= new SettingFragment();
@@ -59,6 +59,13 @@ public class FunctionActivity extends AppCompatActivity {
                 WordListFragment wordListFragment = new WordListFragment();
                 wordListFragment.setArguments(bundle);
                 transaction.replace(R.id.func_frame, wordListFragment);
+                break;
+            case "box_test":
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("box_num", intent.getExtras().getString("sub_title"));
+                TestFragment testFragment = new TestFragment();
+                testFragment.setArguments(bundle1);
+                transaction.replace(R.id.func_frame, testFragment);
                 break;
         }
         transaction.commit();

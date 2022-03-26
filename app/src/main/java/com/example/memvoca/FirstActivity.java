@@ -28,6 +28,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class FirstActivity extends AppCompatActivity {
 
     private Context mContext;
@@ -133,6 +140,13 @@ public class FirstActivity extends AppCompatActivity {
                 String mName = mUserName.getText().toString();
                 String mCycle = tv_cycle.getText().toString();
                 String mTestTime = tv_time.getText().toString();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(new Date());
+
+                //날짜 형식 지정
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String firstDay = df.format(cal.getTime());
+
 
                 if (mName.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "닉네임을 입력해 주세요.", Toast.LENGTH_LONG).show();
@@ -160,6 +174,7 @@ public class FirstActivity extends AppCompatActivity {
                                     PreferenceManager.setInt(mContext, "memory_cycle_2", Cycle[1]);
                                     PreferenceManager.setInt(mContext, "memory_cycle_3", Cycle[2]);
                                     PreferenceManager.setLong(mContext, "nextNotifyTime", (long)calendar.getTimeInMillis());
+                                    PreferenceManager.setString(mContext, "first_day", firstDay);
 
                                     diaryNotification(calendar);
 

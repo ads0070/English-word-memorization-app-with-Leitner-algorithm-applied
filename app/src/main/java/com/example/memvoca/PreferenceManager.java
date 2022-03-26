@@ -12,6 +12,7 @@ public class PreferenceManager {
     private static final int DEFAULT_VALUE_INT = -1;
     private static final long DEFAULT_VALUE_LONG = Calendar.getInstance().getTimeInMillis();
     private static final int DEFAULT_COUNT = 0;
+    private static final String DEFAULT_DAY = "None";
 
     private static SharedPreferences getPreferences(Context context) {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -53,6 +54,12 @@ public class PreferenceManager {
     public static String getString(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getString(key, DEFAULT_VALUE_STRING);
+    }
+
+    /** String 값(처음 실행 날짜) 로드 */
+    public static String getFirstDay(Context context, String key) {
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getString(key, DEFAULT_DAY);
     }
 
     /** Boolean 값 로드 */

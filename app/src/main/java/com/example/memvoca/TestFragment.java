@@ -28,6 +28,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     private ViewModelStore viewModelStore = new ViewModelStore();
     private MainViewModel viewModel;
     private Context mContext;
+    private String box_num;
 
     private int count;
     ArrayList<ArrayList<String>> voca = new ArrayList<ArrayList<String>>();
@@ -36,6 +37,13 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_test, container, false);
         mContext = getContext();
+
+        if(getArguments() != null) {
+            box_num = getArguments().getString("box_num");
+        }
+
+        TextView tv_subtitle = view.findViewById(R.id.day_count);
+        tv_subtitle.setText(box_num);
 
         FrameLayout frameLayout = view.findViewById(R.id.test_card_frame);
         frameLayout.setOnClickListener(this);
