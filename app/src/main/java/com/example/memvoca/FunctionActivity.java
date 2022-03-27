@@ -62,6 +62,7 @@ public class FunctionActivity extends AppCompatActivity {
                 transaction.replace(R.id.func_frame, wordListFragment);
                 break;
             case "box_test":
+                backBtn.setVisibility(View.INVISIBLE);
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("box_num", intent.getExtras().getString("sub_title"));
                 TestFragment testFragment = new TestFragment();
