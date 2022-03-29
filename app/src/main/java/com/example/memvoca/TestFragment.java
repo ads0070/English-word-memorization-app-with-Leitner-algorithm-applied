@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -22,9 +23,11 @@ import com.example.memvoca.card.CardBackFragment;
 import com.example.memvoca.card.CardFrontFragment;
 import com.example.memvoca.database.finishbox.FinishBox;
 import com.example.memvoca.database.MainViewModel;
+import com.example.memvoca.database.vocabulary.Vocabulary;
 import com.example.memvoca.database.zerobox.ZeroBox;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestFragment extends Fragment implements View.OnClickListener, ViewModelStoreOwner {
     private View view;
@@ -35,9 +38,15 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     private MainViewModel viewModel;
     private Context mContext;
     private String box_num;
-
     private int count;
-    ArrayList<ArrayList<String>> voca = new ArrayList<ArrayList<String>>();
+    private int num_of_words_remaining;
+    private ArrayList<ArrayList<String>> voca = new ArrayList<ArrayList<String>>();
+    private ArrayList<String> id = new ArrayList<>();
+    private ArrayList<String> word = new ArrayList<>();
+    private ArrayList<String> pronunciation = new ArrayList<>();
+    private ArrayList<String> meaning = new ArrayList<>();
+    private ArrayList<String> etymology = new ArrayList<>();
+    private ArrayList<String> sod = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,44 +68,168 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         TextView unknown_word_count = view.findViewById(R.id.unknown_word_count);
         TextView know_word_count = view.findViewById(R.id.already_know_word_count);
 
-        if(viewModelFactory == null){
+        if(viewModelFactory == null) {
             viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
         }
 
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
         Intent intent = new Intent(getActivity(), EndPopupActivity.class);
 
-        viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
-            voca.clear();
-            ArrayList<String> id = new ArrayList<>();
-            ArrayList<String> word = new ArrayList<>();
-            ArrayList<String> pronunciation = new ArrayList<>();
-            ArrayList<String> meaning = new ArrayList<>();
-            ArrayList<String> etymology = new ArrayList<>();
-            ArrayList<String> sod = new ArrayList<>();
+        switch(box_num) {
+            case "BOX 0":
+                viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
 
-            words.forEach(s -> id.add(String.valueOf(s.getId())));
-            words.forEach(s -> word.add(s.getWord()));
-            words.forEach(s -> pronunciation.add(s.getPronunciation()));
-            words.forEach(s -> meaning.add(s.getMeaning()));
-            words.forEach(s -> etymology.add(s.getEtymology()));
-            words.forEach(s -> sod.add(s.getSod()));
+                    addVoca();
 
-            voca.add(id);
-            voca.add(word);
-            voca.add(pronunciation);
-            voca.add(meaning);
-            voca.add(etymology);
-            voca.add(sod);
+                    PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
 
-            PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
+                    if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+            case "BOX 1":
+                viewModel.getAllFirstBox().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
 
-            if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {
-                startActivity(intent);
-            } else {
-                changeToFront();
-            }
-        });
+                    num_of_words_remaining = voca.get(0).size();
+                    addVoca();
+
+                    if(num_of_words_remaining==0) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+            case "BOX 2":
+                viewModel.getAllSecondBox().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
+
+                    num_of_words_remaining = voca.get(0).size();
+                    addVoca();
+
+                    if(num_of_words_remaining==0) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+            case "BOX 3":
+                viewModel.getAllThirdBox().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
+
+                    num_of_words_remaining = voca.get(0).size();
+                    addVoca();
+
+                    if(num_of_words_remaining==0) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+            case "BOX 4":
+                viewModel.getAllFourthBox().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
+
+                    num_of_words_remaining = voca.get(0).size();
+                    addVoca();
+
+                    if(num_of_words_remaining==0) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+            case "BOX 5":
+                viewModel.getAllFifthBox().observe(getViewLifecycleOwner(), words -> {
+                    voca.clear();
+                    words.forEach(s -> id.add(String.valueOf(s.getId())));
+                    words.forEach(s -> word.add(s.getWord()));
+                    words.forEach(s -> pronunciation.add(s.getPronunciation()));
+                    words.forEach(s -> meaning.add(s.getMeaning()));
+                    words.forEach(s -> etymology.add(s.getEtymology()));
+                    words.forEach(s -> sod.add(s.getSod()));
+
+                    num_of_words_remaining = voca.get(0).size();
+                    addVoca();
+
+                    if(num_of_words_remaining==0) {
+                        startActivity(intent);
+                    } else {
+                        changeToFront();
+                    }
+                });
+                break;
+        }
+
+//        viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
+//            voca.clear();
+//            ArrayList<String> id = new ArrayList<>();
+//            ArrayList<String> word = new ArrayList<>();
+//            ArrayList<String> pronunciation = new ArrayList<>();
+//            ArrayList<String> meaning = new ArrayList<>();
+//            ArrayList<String> etymology = new ArrayList<>();
+//            ArrayList<String> sod = new ArrayList<>();
+//
+//            words.forEach(s -> id.add(String.valueOf(s.getId())));
+//            words.forEach(s -> word.add(s.getWord()));
+//            words.forEach(s -> pronunciation.add(s.getPronunciation()));
+//            words.forEach(s -> meaning.add(s.getMeaning()));
+//            words.forEach(s -> etymology.add(s.getEtymology()));
+//            words.forEach(s -> sod.add(s.getSod()));
+//
+//            voca.add(id);
+//            voca.add(word);
+//            voca.add(pronunciation);
+//            voca.add(meaning);
+//            voca.add(etymology);
+//            voca.add(sod);
+//
+//            PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
+//
+//            if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {
+//                startActivity(intent);
+//            } else {
+//                changeToFront();
+//            }
+//        });
 
         int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
         count = PreferenceManager.getNum(mContext,"count");
@@ -192,5 +325,14 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         cardBackFragment.setArguments(bundle);
         transaction.replace(R.id.test_card_frame, cardBackFragment);
         transaction.commit();
+    }
+
+    public void addVoca() {
+        voca.add(id);
+        voca.add(word);
+        voca.add(pronunciation);
+        voca.add(meaning);
+        voca.add(etymology);
+        voca.add(sod);
     }
 }
