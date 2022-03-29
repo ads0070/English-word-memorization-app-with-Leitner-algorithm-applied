@@ -76,7 +76,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         Intent intent = new Intent(getActivity(), EndPopupActivity.class);
 
         switch(box_num) {
-            case "BOX 0":
+            case "FIRST TEST":
                 viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -87,7 +87,6 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> sod.add(s.getSod()));
 
                     addVoca();
-
                     PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
 
                     if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {

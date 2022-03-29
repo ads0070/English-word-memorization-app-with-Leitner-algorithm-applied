@@ -175,7 +175,7 @@ public class FirstActivity extends AppCompatActivity {
 
                                     Intent intent = new Intent(FirstActivity.this, FunctionActivity.class);
                                     intent.putExtra("title","테스트");
-                                    intent.putExtra("sub_title","BOX 0");
+                                    intent.putExtra("sub_title","First Test");
                                     intent.putExtra("type","box_test");
                                     startActivity(intent);
                                 }
