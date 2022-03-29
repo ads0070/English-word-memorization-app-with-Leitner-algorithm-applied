@@ -1,4 +1,4 @@
-package com.example.memvoca.database;
+package com.example.memvoca.database.vocabulary;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

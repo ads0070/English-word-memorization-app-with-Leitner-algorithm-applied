@@ -7,6 +7,23 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.memvoca.database.fifthbox.FifthBox;
+import com.example.memvoca.database.fifthbox.FifthBoxDao;
+import com.example.memvoca.database.finishbox.FinishBox;
+import com.example.memvoca.database.finishbox.FinishBoxDao;
+import com.example.memvoca.database.firstbox.FirstBox;
+import com.example.memvoca.database.firstbox.FirstBoxDao;
+import com.example.memvoca.database.fourthbox.FourthBox;
+import com.example.memvoca.database.fourthbox.FourthBoxDao;
+import com.example.memvoca.database.secondbox.SecondBox;
+import com.example.memvoca.database.secondbox.SecondBoxDao;
+import com.example.memvoca.database.thirdbox.ThirdBox;
+import com.example.memvoca.database.thirdbox.ThirdBoxDao;
+import com.example.memvoca.database.vocabulary.Vocabulary;
+import com.example.memvoca.database.vocabulary.VocabularyDao;
+import com.example.memvoca.database.zerobox.ZeroBox;
+import com.example.memvoca.database.zerobox.ZeroBoxDao;
+
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
@@ -67,6 +84,136 @@ public class MainViewModel extends AndroidViewModel {
         @Override
         protected Void doInBackground(ZeroBox... zeroBoxes) {
             zeroBoxDao.insert(zeroBoxes[0]);
+            return null;
+        }
+    }
+
+    /***
+     * FirstBox
+     * getAllFirstBox() 전체 검색
+     * insertIntoFirstBox() 삽입
+     */
+    public LiveData<List<FirstBox>> getAllFirstBox(){
+        return vocabularyDatabase.getFirstBoxDao().getAll();
+    }
+
+    public void insertIntoFirstBox(FirstBox firstBox){
+        new InsertFirstBAsyncTask(vocabularyDatabase.getFirstBoxDao()).execute(firstBox);
+    }
+    private static class InsertFirstBAsyncTask extends AsyncTask<FirstBox,Void, Void> {
+        private FirstBoxDao firstBoxDao;
+
+        public InsertFirstBAsyncTask(FirstBoxDao firstBoxDao) {
+            this.firstBoxDao = firstBoxDao;
+        }
+
+        @Override
+        protected Void doInBackground(FirstBox... firstBoxes) {
+            firstBoxDao.insert(firstBoxes[0]);
+            return null;
+        }
+    }
+
+    /***
+     * SecondBox
+     * getAllSecondBox() 전체 검색
+     * insertIntoSecondBox() 삽입
+     */
+    public LiveData<List<SecondBox>> getAllSecondBox(){
+        return vocabularyDatabase.getSecondBoxDao().getAll();
+    }
+
+    public void insertIntoSecondBox(SecondBox secondBox){
+        new InsertSecondBAsyncTask(vocabularyDatabase.getSecondBoxDao()).execute(secondBox);
+    }
+    private static class InsertSecondBAsyncTask extends AsyncTask<SecondBox,Void, Void> {
+        private SecondBoxDao secondBoxDao;
+
+        public InsertSecondBAsyncTask(SecondBoxDao secondBoxDao) {
+            this.secondBoxDao = secondBoxDao;
+        }
+
+        @Override
+        protected Void doInBackground(SecondBox... secondBoxes) {
+            secondBoxDao.insert(secondBoxes[0]);
+            return null;
+        }
+    }
+
+    /***
+     * ThirdBox
+     * getAllSecondBox() 전체 검색
+     * insertIntoSecondBox() 삽입
+     */
+    public LiveData<List<ThirdBox>> getAllThirdBox(){
+        return vocabularyDatabase.getThirdBoxDao().getAll();
+    }
+
+    public void insertIntoThirdBox(ThirdBox thirdBox){
+        new InsertThirdBAsyncTask(vocabularyDatabase.getThirdBoxDao()).execute(thirdBox);
+    }
+    private static class InsertThirdBAsyncTask extends AsyncTask<ThirdBox,Void, Void> {
+        private ThirdBoxDao thirdBoxDao;
+
+        public InsertThirdBAsyncTask(ThirdBoxDao thirdBoxDao) {
+            this.thirdBoxDao = thirdBoxDao;
+        }
+
+        @Override
+        protected Void doInBackground(ThirdBox... thirdBoxes) {
+            thirdBoxDao.insert(thirdBoxes[0]);
+            return null;
+        }
+    }
+
+    /***
+     * FourthBox
+     * getAllFourthBox() 전체 검색
+     * insertIntoFourthBox() 삽입
+     */
+    public LiveData<List<FourthBox>> getAllFourthBox(){
+        return vocabularyDatabase.getFourthBoxDao().getAll();
+    }
+
+    public void insertIntoFourthBox(FourthBox fourthBox){
+        new InsertFourthBAsyncTask(vocabularyDatabase.getFourthBoxDao()).execute(fourthBox);
+    }
+    private static class InsertFourthBAsyncTask extends AsyncTask<FourthBox,Void, Void> {
+        private FourthBoxDao fourthBoxDao;
+
+        public InsertFourthBAsyncTask(FourthBoxDao fourthBoxDao) {
+            this.fourthBoxDao = fourthBoxDao;
+        }
+
+        @Override
+        protected Void doInBackground(FourthBox... fourthBoxes) {
+            fourthBoxDao.insert(fourthBoxes[0]);
+            return null;
+        }
+    }
+
+    /***
+     * FifthBox
+     * getAllFifthBox() 전체 검색
+     * insertIntoFifthBox() 삽입
+     */
+    public LiveData<List<FifthBox>> getAllFifthBox(){
+        return vocabularyDatabase.getFifthBoxDao().getAll();
+    }
+
+    public void insertIntoFifthBox(FifthBox fifthBox){
+        new InsertFifthBAsyncTask(vocabularyDatabase.getFifthBoxDao()).execute(fifthBox);
+    }
+    private static class InsertFifthBAsyncTask extends AsyncTask<FifthBox,Void, Void> {
+        private FifthBoxDao fifthBoxDao;
+
+        public InsertFifthBAsyncTask(FifthBoxDao fifthBoxDao) {
+            this.fifthBoxDao = fifthBoxDao;
+        }
+
+        @Override
+        protected Void doInBackground(FifthBox... fifthBoxes) {
+            fifthBoxDao.insert(fifthBoxes[0]);
             return null;
         }
     }

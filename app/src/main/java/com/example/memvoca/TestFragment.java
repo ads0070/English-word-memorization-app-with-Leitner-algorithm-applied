@@ -20,9 +20,9 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.memvoca.card.CardBackFragment;
 import com.example.memvoca.card.CardFrontFragment;
-import com.example.memvoca.database.FinishBox;
+import com.example.memvoca.database.finishbox.FinishBox;
 import com.example.memvoca.database.MainViewModel;
-import com.example.memvoca.database.ZeroBox;
+import com.example.memvoca.database.zerobox.ZeroBox;
 
 import java.util.ArrayList;
 

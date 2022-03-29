@@ -1,4 +1,4 @@
-package com.example.memvoca.database;
+package com.example.memvoca.database.firstbox;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -6,8 +6,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class ZeroBox {
-    public ZeroBox(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
+public class FirstBox {
+    public FirstBox(int id, String word, String pronunciation, String meaning, String etymology, String sod) {
         this.id = id;
         this.word = word;
         this.pronunciation = pronunciation;
