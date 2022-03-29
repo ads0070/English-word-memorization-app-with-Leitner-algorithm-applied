@@ -16,6 +16,7 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,16 +24,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:theme="@style/BasicTheme"/>
-        <activity android:name=".FirstActivity"/>
-        <activity android:name=".FunctionActivity"/>
+            android:theme="@style/BasicTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FirstActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FunctionActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ResetPopupActivity"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"/>
         <activity android:name=".EndPopupActivity"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"/>
         <activity android:name=".TestAlarmPopupActivity"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" />
-        <activity android:name=".StudyAlarmActivity"/>
+            android:theme="@android:style/Theme.Holo.Light.Dialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".StudyAlarmActivity"
+            android:screenOrientation="portrait"/>
         <receiver android:name=".TestAlarmBootReceiver"
             android:enabled="false"
             android:exported="false">
