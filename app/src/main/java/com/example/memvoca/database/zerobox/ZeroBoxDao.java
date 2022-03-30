@@ -19,4 +19,7 @@ public interface ZeroBoxDao {
 
     @Delete
     void delete(ZeroBox zeroBox);
+
+    @Query("DELETE FROM ZeroBox")
+    void deleteAll();
 }
