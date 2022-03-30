@@ -43,14 +43,49 @@ public class WordListFragment extends Fragment {
 
         switch (box_type) {
             case "BOX 1":
+                viewModel.getAllFirstBox().observe(getViewLifecycleOwner(), words -> {
+                    for(int i = 0; i < words.size(); i++) {
+                        WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());
+                        adapter.addItem(item);
+                    }
+                    listView.setAdapter(adapter);
+                });
                 break;
             case "BOX 2":
+                viewModel.getAllSecondBox().observe(getViewLifecycleOwner(), words -> {
+                    for(int i = 0; i < words.size(); i++) {
+                        WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());
+                        adapter.addItem(item);
+                    }
+                    listView.setAdapter(adapter);
+                });
                 break;
             case "BOX 3":
+                viewModel.getAllThirdBox().observe(getViewLifecycleOwner(), words -> {
+                    for(int i = 0; i < words.size(); i++) {
+                        WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());
+                        adapter.addItem(item);
+                    }
+                    listView.setAdapter(adapter);
+                });
                 break;
             case "BOX 4":
+                viewModel.getAllFourthBox().observe(getViewLifecycleOwner(), words -> {
+                    for(int i = 0; i < words.size(); i++) {
+                        WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());
+                        adapter.addItem(item);
+                    }
+                    listView.setAdapter(adapter);
+                });
                 break;
             case "BOX 5":
+                viewModel.getAllFifthBox().observe(getViewLifecycleOwner(), words -> {
+                    for(int i = 0; i < words.size(); i++) {
+                        WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());
+                        adapter.addItem(item);
+                    }
+                    listView.setAdapter(adapter);
+                });
                 break;
             case "BOX FINISH":
                 viewModel.getAllFinishBox().observe(getViewLifecycleOwner(), words -> {

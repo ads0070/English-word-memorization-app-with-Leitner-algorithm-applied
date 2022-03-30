@@ -29,9 +29,7 @@ public class FunctionActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FunctionActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                onBackPressed();
             }
         });
 
@@ -48,7 +46,6 @@ public class FunctionActivity extends AppCompatActivity {
             case "test":
                 TestListFragment testListFragment= new TestListFragment();
                 transaction.replace(R.id.func_frame, testListFragment);
-//                backBtn.setVisibility(View.INVISIBLE);
                 break;
             case "setting":
                 SettingFragment settingFragment= new SettingFragment();
