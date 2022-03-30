@@ -76,7 +76,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         Intent intent = new Intent(getActivity(), EndPopupActivity.class);
 
         switch(box_num) {
-            case "FIRST TEST":
+            case "TEST":
                 viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -106,8 +106,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> etymology.add(s.getEtymology()));
                     words.forEach(s -> sod.add(s.getSod()));
 
-                    num_of_words_remaining = voca.get(0).size();
                     addVoca();
+                    num_of_words_remaining = voca.size();
 
                     if(num_of_words_remaining==0) {
                         startActivity(intent);
@@ -126,8 +126,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> etymology.add(s.getEtymology()));
                     words.forEach(s -> sod.add(s.getSod()));
 
-                    num_of_words_remaining = voca.get(0).size();
                     addVoca();
+                    num_of_words_remaining = voca.size();
 
                     if(num_of_words_remaining==0) {
                         startActivity(intent);
@@ -146,8 +146,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> etymology.add(s.getEtymology()));
                     words.forEach(s -> sod.add(s.getSod()));
 
-                    num_of_words_remaining = voca.get(0).size();
                     addVoca();
+                    num_of_words_remaining = voca.size();
 
                     if(num_of_words_remaining==0) {
                         startActivity(intent);
@@ -166,8 +166,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> etymology.add(s.getEtymology()));
                     words.forEach(s -> sod.add(s.getSod()));
 
-                    num_of_words_remaining = voca.get(0).size();
                     addVoca();
+                    num_of_words_remaining = voca.size();
 
                     if(num_of_words_remaining==0) {
                         startActivity(intent);
@@ -186,8 +186,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     words.forEach(s -> etymology.add(s.getEtymology()));
                     words.forEach(s -> sod.add(s.getSod()));
 
-                    num_of_words_remaining = voca.get(0).size();
                     addVoca();
+                    num_of_words_remaining = voca.size();
 
                     if(num_of_words_remaining==0) {
                         startActivity(intent);
@@ -197,38 +197,6 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
         }
-
-//        viewModel.getAllVocabulary().observe(getViewLifecycleOwner(), words -> {
-//            voca.clear();
-//            ArrayList<String> id = new ArrayList<>();
-//            ArrayList<String> word = new ArrayList<>();
-//            ArrayList<String> pronunciation = new ArrayList<>();
-//            ArrayList<String> meaning = new ArrayList<>();
-//            ArrayList<String> etymology = new ArrayList<>();
-//            ArrayList<String> sod = new ArrayList<>();
-//
-//            words.forEach(s -> id.add(String.valueOf(s.getId())));
-//            words.forEach(s -> word.add(s.getWord()));
-//            words.forEach(s -> pronunciation.add(s.getPronunciation()));
-//            words.forEach(s -> meaning.add(s.getMeaning()));
-//            words.forEach(s -> etymology.add(s.getEtymology()));
-//            words.forEach(s -> sod.add(s.getSod()));
-//
-//            voca.add(id);
-//            voca.add(word);
-//            voca.add(pronunciation);
-//            voca.add(meaning);
-//            voca.add(etymology);
-//            voca.add(sod);
-//
-//            PreferenceManager.setInt(mContext,"total_count", voca.get(0).size());
-//
-//            if(PreferenceManager.getNum(mContext,"count") >= PreferenceManager.getInt(mContext, "total_count")) {
-//                startActivity(intent);
-//            } else {
-//                changeToFront();
-//            }
-//        });
 
         int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
         count = PreferenceManager.getNum(mContext,"count");
@@ -301,10 +269,16 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     }
 
     public void changeToFront() {
+        int index_num = 0;
+
+        if ("TEST".equals(box_num)) {
+            index_num = count;
+        }
+
         Bundle bundle = new Bundle();
-        bundle.putString("id", voca.get(0).get(count));
-        bundle.putString("word", voca.get(1).get(count));
-        bundle.putString("pronunciation", voca.get(2).get(count));
+        bundle.putString("id", voca.get(0).get(index_num));
+        bundle.putString("word", voca.get(1).get(index_num));
+        bundle.putString("pronunciation", voca.get(2).get(index_num));
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         CardFrontFragment cardFrontFragment = new CardFrontFragment();
@@ -314,10 +288,17 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     }
 
     public void changeToBack() {
+        int index_num = 0;
+
+        if ("TEST".equals(box_num)) {
+            index_num = count;
+        }
+
         Bundle bundle = new Bundle();
-        bundle.putString("meaning", voca.get(3).get(count));
-        bundle.putString("etymology", voca.get(4).get(count));
-        bundle.putString("sod", voca.get(5).get(count));
+        bundle.putString("meaning", voca.get(3).get(index_num));
+        bundle.putString("etymology", voca.get(4).get(index_num));
+        bundle.putString("sod", voca.get(5).get(index_num));
+
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         CardBackFragment cardBackFragment = new CardBackFragment();
