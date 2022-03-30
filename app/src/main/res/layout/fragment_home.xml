@@ -308,6 +308,7 @@
             android:layout_marginVertical="10dp"
             android:textColor="@color/black"
             android:textStyle="normal"
+            android:text="Never leave that 'till tomorrow which you can do today."
             android:autoSizeTextType="uniform"
             android:autoSizeMaxTextSize="25sp"
             android:gravity="center">
@@ -327,6 +328,7 @@
                 android:layout_weight="2"
                 android:textStyle="normal"
                 android:textColor="@color/black"
+                android:text="오늘 할 수 있는 일을 내일로 미루지 마라."
                 android:autoSizeTextType="uniform"
                 android:autoSizeMaxTextSize="20sp"
                 android:gravity="center">
@@ -339,6 +341,7 @@
                 android:layout_weight="1"
                 android:textStyle="italic"
                 android:textColor="@color/black"
+                android:text="Benjamin Franklin"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMaxTextSize="20sp"
                 android:gravity="center">
