@@ -43,23 +43,29 @@ public class TestListFragment extends Fragment implements View.OnClickListener{
         box4_cycle.setText(Integer.toString(PreferenceManager.getInt(mContext, "memory_cycle_2"))+" 일");
         box5_cycle.setText(Integer.toString(PreferenceManager.getInt(mContext, "memory_cycle_3"))+" 일");
 
-        if (Dday > 1){
+        boolean box1_flag = PreferenceManager.getBoolean(mContext, "BOX_1_TEST");
+        boolean box2_flag = PreferenceManager.getBoolean(mContext, "BOX_2_TEST");
+        boolean box3_flag = PreferenceManager.getBoolean(mContext, "BOX_3_TEST");
+        boolean box4_flag = PreferenceManager.getBoolean(mContext, "BOX_4_TEST");
+        boolean box5_flag = PreferenceManager.getBoolean(mContext, "BOX_5_TEST");
+
+        if (Dday > 1 && !box1_flag){
             box1.setOnClickListener(this);
             box1.setBackground(mContext.getResources().getDrawable(R.drawable.testable));
         }
-        if ((Dday%3) == 0){
+        if ((Dday%3) == 0 && !box2_flag){
             box2.setOnClickListener(this);
             box2.setBackground(mContext.getResources().getDrawable(R.drawable.testable));
         }
-        if ((Dday%cycle1) == 0){
+        if ((Dday%cycle1) == 0 && !box3_flag){
             box3.setOnClickListener(this);
             box3.setBackground(mContext.getResources().getDrawable(R.drawable.testable));
         }
-        if ((Dday%cycle2) == 0){
+        if ((Dday%cycle2) == 0 && !box4_flag){
             box4.setOnClickListener(this);
             box4.setBackground(mContext.getResources().getDrawable(R.drawable.testable));
         }
-        if ((Dday%cycle3) == 0){
+        if ((Dday%cycle3) == 0 && !box5_flag){
             box5.setOnClickListener(this);
             box5.setBackground(mContext.getResources().getDrawable(R.drawable.testable));
         }

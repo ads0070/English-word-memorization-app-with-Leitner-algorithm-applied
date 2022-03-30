@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 public class EndPopupActivity extends Activity {
 
@@ -22,6 +23,12 @@ public class EndPopupActivity extends Activity {
 
         getWindow().getAttributes().width = w;
         getWindow().getAttributes().height = h;
+
+        Intent intent = getIntent();
+        if (intent.getExtras() != null) {
+            TextView tv_Text = findViewById(R.id.reset_context);
+            tv_Text.setText(intent.getExtras().getString("text"));
+        }
     }
 
     public void onTouchConfirm(View v) {

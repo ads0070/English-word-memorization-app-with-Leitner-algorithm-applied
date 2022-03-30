@@ -1,6 +1,7 @@
 package com.example.memvoca;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
             viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
         }
         viewModel = new ViewModelProvider(this,viewModelFactory).get(MainViewModel.class);
+        Intent intent = new Intent(getActivity(), EndPopupActivity.class);
 
         viewModel.getAllZeroBox().observe(getViewLifecycleOwner(), words -> {
             voca.clear();
@@ -68,6 +70,11 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
             words.forEach(s -> meaning.add(s.getMeaning()));
             words.forEach(s -> etymology.add(s.getEtymology()));
             words.forEach(s -> sod.add(s.getSod()));
+
+            if (words.size() == 0){
+                intent.putExtra("text", "학습할 데이터가 없습니다.");
+                startActivity(intent);
+            }
 
             voca.add(id);
             voca.add(word);
@@ -86,7 +93,6 @@ public class StudyFragment extends Fragment implements ViewModelStoreOwner {
 
     private void pagerInit(){
         ViewPager2 viewPager = viewGroup.findViewById(R.id.card_frameLayout);
-
 
         cardAdapter = new CardAdapter(voca);
         viewPager.setAdapter(cardAdapter);

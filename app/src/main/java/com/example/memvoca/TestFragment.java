@@ -97,6 +97,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
             case "BOX 1":
+                PreferenceManager.setBoolean(mContext, "BOX_1_TEST", true);
                 viewModel.getAllFirstBox().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -117,6 +118,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
             case "BOX 2":
+                PreferenceManager.setBoolean(mContext, "BOX_2_TEST", true);
                 viewModel.getAllSecondBox().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -137,6 +139,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
             case "BOX 3":
+                PreferenceManager.setBoolean(mContext, "BOX_3_TEST", true);
                 viewModel.getAllThirdBox().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -157,6 +160,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
             case "BOX 4":
+                PreferenceManager.setBoolean(mContext, "BOX_4_TEST", true);
                 viewModel.getAllFourthBox().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));
@@ -177,6 +181,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 });
                 break;
             case "BOX 5":
+                PreferenceManager.setBoolean(mContext, "BOX_5_TEST", true);
                 viewModel.getAllFifthBox().observe(getViewLifecycleOwner(), words -> {
                     voca.clear();
                     words.forEach(s -> id.add(String.valueOf(s.getId())));

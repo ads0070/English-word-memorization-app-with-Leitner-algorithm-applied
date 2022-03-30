@@ -69,12 +69,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }catch (ParseException e){
                 e.printStackTrace();
             }
+
             // 밀리초로 변환 -> 차이 계산 -> 정수로 변환
             long dday = toDay.getTimeInMillis() - targetDay.getTimeInMillis();
             long Dday = (dday/ONE_DAY)+1;
 
             TextView tv_Dday = v.findViewById(R.id.tv_Dday);
             tv_Dday.setText("Day "+Dday);
+
+            // 하루마다 시험 가능 여부 최신화
+            int setDday = PreferenceManager.getInt(mContext, "D-day");
+
+            if (setDday < Dday){
+                PreferenceManager.setBoolean(mContext, "BOX_1_TEST", false);
+                PreferenceManager.setBoolean(mContext, "BOX_2_TEST", false);
+                PreferenceManager.setBoolean(mContext, "BOX_3_TEST", false);
+                PreferenceManager.setBoolean(mContext, "BOX_4_TEST", false);
+                PreferenceManager.setBoolean(mContext, "BOX_5_TEST", false);
+            }
+
             // D-day 계산 후 PM에 저장 및 최신화
             PreferenceManager.setInt(mContext, "D-day", Long.valueOf(Dday).intValue());
         }
