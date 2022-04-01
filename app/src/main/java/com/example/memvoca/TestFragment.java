@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -23,7 +24,6 @@ import com.example.memvoca.card.CardFrontFragment;
 import com.example.memvoca.database.fifthbox.FifthBox;
 import com.example.memvoca.database.finishbox.FinishBox;
 import com.example.memvoca.database.MainViewModel;
-import com.example.memvoca.database.firstbox.FirstBox;
 import com.example.memvoca.database.fourthbox.FourthBox;
 import com.example.memvoca.database.secondbox.SecondBox;
 import com.example.memvoca.database.thirdbox.ThirdBox;
@@ -50,6 +50,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     private ArrayList<String> meaning = new ArrayList<>();
     private ArrayList<String> etymology = new ArrayList<>();
     private ArrayList<String> sod = new ArrayList<>();
+    private int zero_box_size = 0;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,6 +71,9 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         Button btn_know = view.findViewById(R.id.btn_know);
         TextView unknown_word_count = view.findViewById(R.id.unknown_word_count);
         TextView know_word_count = view.findViewById(R.id.already_know_word_count);
+
+        int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
+        count = PreferenceManager.getNum(mContext,"count");
 
         if(viewModelFactory == null) {
             viewModelFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().getApplication());
@@ -98,6 +102,14 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                         changeToFront();
                     }
                 });
+
+                viewModel.getSizeZeroBox().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+                        zero_box_size = integer;
+                        unknown_word_count.setText(String.valueOf(zero_box_size));
+                    }
+                });
                 break;
             case "BOX 1":
                 viewModel.getAllFirstBox().observe(getViewLifecycleOwner(), words -> {
@@ -111,10 +123,24 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
 
                     box_word_count=words.size();
                     if(words.isEmpty()) {
-                        startActivity(intent);
+                        if(zero_box_size >= wordTarget) {
+                            startActivity(intent);
+                        } else {
+                            intent.putExtra("title","테스트");
+                            intent.putExtra("sub_title","TEST");
+                            intent.putExtra("type","box_test");
+                            startActivity(intent);
+                        }
                     } else {
                         addVoca();
                         changeToFront();
+                    }
+                });
+
+                viewModel.getSizeZeroBox().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+                        zero_box_size = integer;
                     }
                 });
                 break;
@@ -196,9 +222,6 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                 break;
         }
 
-        int wordTarget = PreferenceManager.getInt(mContext, "word_target_setting");
-        count = PreferenceManager.getNum(mContext,"count");
-
         btn_unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -233,7 +256,17 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                         box_word_index++;
                         if (box_word_index >= box_word_count) {
                             viewModel.deleteAllFirstBox();
-                            startActivity(intent);
+
+                            if(zero_box_size >= wordTarget) {
+                                startActivity(intent);
+                            } else {
+                                intent.putExtra("title","테스트");
+                                intent.putExtra("sub_title","TEST");
+                                intent.putExtra("type","box_test");
+                                startActivity(intent);
+                                break;
+                            }
+
                         } else {
                             changeToFront();
                         }
@@ -294,12 +327,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                         viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(index_num)),
                                 voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
                                 voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        PreferenceManager.setInt(mContext, "count", count++);
 
-                        if (Integer.parseInt(unknown_word_count.getText().toString()) == wordTarget) {
-                            PreferenceManager.setInt(mContext, "count", count);
-                            startActivity(intent);
-                        }
+                        PreferenceManager.setInt(mContext, "count", count++);
 
                         if (count >= PreferenceManager.getInt(mContext, "total_count")) {
                             startActivity(intent);
@@ -315,7 +344,15 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
 
                         if (box_word_index >= box_word_count) {
                             viewModel.deleteAllFirstBox();
-                            startActivity(intent);
+                            if(zero_box_size >= wordTarget) {
+                                startActivity(intent);
+                            } else {
+                                intent.putExtra("title","테스트");
+                                intent.putExtra("sub_title","TEST");
+                                intent.putExtra("type","box_test");
+                                startActivity(intent);
+                                break;
+                            }
                         } else {
                             changeToFront();
                         }

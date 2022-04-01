@@ -14,6 +14,9 @@ public interface ZeroBoxDao {
     @Query("SELECT * FROM ZeroBox")
     LiveData<List<ZeroBox>> getAll();
 
+    @Query("SELECT COUNT(*) FROM ZeroBox")
+    LiveData<Integer> getSize();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ZeroBox zeroBox);
 

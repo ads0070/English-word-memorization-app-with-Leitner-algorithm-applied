@@ -7,9 +7,13 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 public class EndPopupActivity extends Activity {
-
+    private String title;
+    private String sub_title;
+    private String type;
+    private TextView endTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,10 +26,30 @@ public class EndPopupActivity extends Activity {
 
         getWindow().getAttributes().width = w;
         getWindow().getAttributes().height = h;
+
+        Intent get_it = getIntent();
+        title = get_it.getStringExtra("title");
+        sub_title = get_it.getStringExtra("sub_title");
+        type = get_it.getStringExtra("type");
+
+        endTv = (TextView) findViewById(R.id.end_test_tv);
+
+        if (sub_title!=null) {
+            endTv.setText("테스트가 종료되었습니다.\n목표 단어 개수를 채우기 위해\n추가 테스트를 진행합니다.");
+        }
     }
 
     public void onTouchConfirm(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
+
+        Intent intent;
+        if(sub_title!=null) {
+            intent = new Intent(this, FunctionActivity.class);
+            intent.putExtra("title",title);
+            intent.putExtra("sub_title",sub_title);
+            intent.putExtra("type",type);
+        } else {
+            intent = new Intent(this, MainActivity.class);
+        }
         startActivity(intent);
         finish();
     }

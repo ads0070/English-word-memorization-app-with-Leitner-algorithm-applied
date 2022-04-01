@@ -39,7 +39,7 @@ public abstract class VocabularyDatabase extends RoomDatabase {
     public abstract FinishBoxDao getFinishBoxDao();
     private static volatile VocabularyDatabase INSTANCE;
 
-    private static final int NUMBER_OF_THREADS = 4;
+    private static final int NUMBER_OF_THREADS = 10;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     public static VocabularyDatabase getDatabase(Context context) {  // Singleton 패턴 구현

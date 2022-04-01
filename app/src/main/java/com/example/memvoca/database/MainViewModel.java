@@ -65,11 +65,16 @@ public class MainViewModel extends AndroidViewModel {
     /***
      * ZeroBox
      * getAllZeroBox() 전체 검색
+     * getSizeZeroBox() 크기 조회
      * insertIntoZeroBox() 삽입
      * deleteAllZeroBox() 전체 삭제
      */
     public LiveData<List<ZeroBox>> getAllZeroBox(){
         return vocabularyDatabase.getZeroBoxDao().getAll();
+    }
+
+    public LiveData<Integer> getSizeZeroBox(){
+        return vocabularyDatabase.getZeroBoxDao().getSize();
     }
 
     public void insertIntoZeroBox(ZeroBox zeroBox){

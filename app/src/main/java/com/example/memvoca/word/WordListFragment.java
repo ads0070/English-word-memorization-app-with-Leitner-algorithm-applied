@@ -87,7 +87,7 @@ public class WordListFragment extends Fragment {
                     listView.setAdapter(adapter);
                 });
                 break;
-            case "BOX FINISH":
+            case "FINISH BOX":
                 viewModel.getAllFinishBox().observe(getViewLifecycleOwner(), words -> {
                     for(int i = 0; i < words.size(); i++) {
                         WordListItem item = new WordListItem(words.get(i).getId(),words.get(i).getWord(),words.get(i).getMeaning());

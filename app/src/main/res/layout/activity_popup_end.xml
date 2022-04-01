@@ -51,7 +51,7 @@
         android:layout_marginVertical="20dp">
 
         <TextView
-            android:id="@+id/reset_context"
+            android:id="@+id/end_test_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:autoSizeMaxTextSize="45dp"

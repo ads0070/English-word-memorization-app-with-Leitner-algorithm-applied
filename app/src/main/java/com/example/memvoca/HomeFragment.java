@@ -75,6 +75,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             TextView tv_Dday = v.findViewById(R.id.tv_Dday);
             tv_Dday.setText("Day "+Dday);
+            if (Dday!=PreferenceManager.getInt(mContext, "D-day")) {
+                PreferenceManager.setBoolean(mContext,"haveYouAlreadyMoved",false);
+                PreferenceManager.setBoolean(mContext,"haveYouAlreadyDeleted",false);
+            }
             // D-day 계산 후 PM에 저장 및 최신화
             PreferenceManager.setInt(mContext, "D-day", Long.valueOf(Dday).intValue());
         }
