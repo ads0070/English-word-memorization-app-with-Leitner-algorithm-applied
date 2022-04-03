@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     private Context mContext;
@@ -97,6 +98,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View view) {
         Intent intent = new Intent(getActivity(), FunctionActivity.class);
+        long millis = PreferenceManager.getLong(mContext, "nextNotifyTime");
+        long now = System.currentTimeMillis();
+        SimpleDateFormat sd = new SimpleDateFormat("Hmm");
+        int testTime = Integer.parseInt(sd.format(millis));
+        int nowTime = Integer.parseInt(sd.format(now));
+
 
         switch (view.getId()){
             case R.id.box_layout:
@@ -105,8 +112,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.test_layout:
-                intent.putExtra("title","테스트 목록");
-                intent.putExtra("type","test");
+                if (nowTime > testTime){
+                    intent.putExtra("title","테스트 목록");
+                    intent.putExtra("type","test");
+                }else{
+                    intent = new Intent(getActivity(), EndPopupActivity.class);
+                    intent.putExtra("text", "시험 시간이 아닙니다.");
+                }
                 startActivity(intent);
                 break;
             case R.id.setting_layout:
