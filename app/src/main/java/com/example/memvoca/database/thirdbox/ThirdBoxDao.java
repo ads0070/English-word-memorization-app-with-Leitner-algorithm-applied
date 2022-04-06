@@ -19,4 +19,7 @@ public interface ThirdBoxDao {
 
     @Delete
     void delete(ThirdBox thirdBox);
+
+    @Query("DELETE FROM ThirdBox")
+    void deleteAll();
 }

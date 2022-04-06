@@ -19,4 +19,7 @@ public interface FirstBoxDao {
 
     @Delete
     void delete(FirstBox firstBox);
+
+    @Query("DELETE FROM FirstBox")
+    void deleteAll();
 }

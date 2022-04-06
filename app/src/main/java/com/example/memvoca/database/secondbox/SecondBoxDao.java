@@ -19,4 +19,7 @@ public interface SecondBoxDao {
 
     @Delete
     void delete(SecondBox secondBox);
+
+    @Query("DELETE FROM SecondBox")
+    void deleteAll();
 }

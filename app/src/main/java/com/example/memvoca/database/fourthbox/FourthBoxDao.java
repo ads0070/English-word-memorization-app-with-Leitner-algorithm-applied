@@ -19,4 +19,7 @@ public interface FourthBoxDao {
 
     @Delete
     void delete(FourthBox fourthBox);
+
+    @Query("DELETE FROM FourthBox")
+    void deleteAll();
 }

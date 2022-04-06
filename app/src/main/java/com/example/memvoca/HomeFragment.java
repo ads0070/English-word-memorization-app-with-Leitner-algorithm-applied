@@ -89,6 +89,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 PreferenceManager.setBoolean(mContext, "BOX_5_TEST", false);
             }
 
+            if (Dday!=PreferenceManager.getInt(mContext, "D-day")) {
+                PreferenceManager.setBoolean(mContext,"haveYouAlreadyMoved",false);
+                PreferenceManager.setBoolean(mContext,"haveYouAlreadyDeleted",false);
+            }
             // D-day 계산 후 PM에 저장 및 최신화
             PreferenceManager.setInt(mContext, "D-day", Long.valueOf(Dday).intValue());
         }

@@ -19,4 +19,7 @@ public interface FifthBoxDao {
 
     @Delete
     void delete(FifthBox fifthBox);
+
+    @Query("DELETE FROM FifthBox")
+    void deleteAll();
 }
