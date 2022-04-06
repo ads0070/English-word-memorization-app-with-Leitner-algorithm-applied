@@ -29,15 +29,14 @@ public class EndPopupActivity extends Activity {
 
         Intent intent = getIntent();
         if (intent.getExtras() != null) {
-            TextView tv_Text = findViewById(R.id.reset_context);
-            tv_Text.setText(intent.getExtras().getString("text"));
+            TextView tv_Text = findViewById(R.id.end_test_tv);
+            tv_Text.setText(intent.getStringExtra("text"));
         }
 
         Intent get_it = getIntent();
         title = get_it.getStringExtra("title");
         sub_title = get_it.getStringExtra("sub_title");
         type = get_it.getStringExtra("type");
-
         endTv = (TextView) findViewById(R.id.end_test_tv);
 
         if (sub_title!=null) {

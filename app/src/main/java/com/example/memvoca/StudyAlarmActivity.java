@@ -26,38 +26,38 @@ public class StudyAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        setContentView(R.layout.test_study_alarm);
-
-        Button test_btn = (Button) findViewById(R.id.test_alarm);
-        Button check_btn = (Button) findViewById(R.id.test_check);
-        TextView tv = (TextView) findViewById(R.id.test_alarm_tv);
-
-        test_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = new GregorianCalendar();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                calendar.add(Calendar.MINUTE, 1);
-
-                Date date_now = new Date(System.currentTimeMillis());
-                Date next_time = new Date((long)calendar.getTimeInMillis());
-                tv.setText("현재 시간 : " + date_now +
-                        "\n다음 알람 시간 : " + next_time);
-                PreferenceManager.setInt(mContext, "study_alarm_count",0);
-                PreferenceManager.setLong(mContext, "nextStudyTime", (long)calendar.getTimeInMillis());
-                diaryNotification(calendar);
-            }
-        });
-
-        check_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                long time = PreferenceManager.getLong(mContext, "nextStudyTime");
-                Date date = new Date(time);
-                tv.setText("다음 알람 시간 : " + date +
-                        "\n울린 알람 횟수 : " + PreferenceManager.getNum(mContext, "study_alarm_count"));
-            }
-        });
+//        setContentView(R.layout.test_study_alarm);
+//
+//        Button test_btn = (Button) findViewById(R.id.test_alarm);
+//        Button check_btn = (Button) findViewById(R.id.test_check);
+//        TextView tv = (TextView) findViewById(R.id.test_alarm_tv);
+//
+//        test_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Calendar calendar = new GregorianCalendar();
+//                calendar.setTimeInMillis(System.currentTimeMillis());
+//                calendar.add(Calendar.MINUTE, 1);
+//
+//                Date date_now = new Date(System.currentTimeMillis());
+//                Date next_time = new Date((long)calendar.getTimeInMillis());
+//                tv.setText("현재 시간 : " + date_now +
+//                        "\n다음 알람 시간 : " + next_time);
+//                PreferenceManager.setInt(mContext, "study_alarm_count",0);
+//                PreferenceManager.setLong(mContext, "nextStudyTime", (long)calendar.getTimeInMillis());
+//                diaryNotification(calendar);
+//            }
+//        });
+//
+//        check_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                long time = PreferenceManager.getLong(mContext, "nextStudyTime");
+//                Date date = new Date(time);
+//                tv.setText("다음 알람 시간 : " + date +
+//                        "\n울린 알람 횟수 : " + PreferenceManager.getNum(mContext, "study_alarm_count"));
+//            }
+//        });
     }
 
     void diaryNotification(Calendar calendar)

@@ -48,14 +48,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         test_layout.setOnClickListener(this);
         setting_layout.setOnClickListener(this);
 
-        progress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), StudyAlarmActivity.class);
-                startActivity(intent);
-            }
-        });
-
         // 어플 최초 시작날짜 불러오기
         String firstDay = PreferenceManager.getFirstDay(mContext, "first_day");
         // 오늘 날짜 지정
@@ -116,7 +108,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.test_layout:
-                if (nowTime > testTime){
+                if (nowTime >= testTime){
                     intent.putExtra("title","테스트 목록");
                     intent.putExtra("type","test");
                 }else{
