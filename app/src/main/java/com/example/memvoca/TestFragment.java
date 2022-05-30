@@ -3,6 +3,7 @@ package com.example.memvoca;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
     private ArrayList<String> etymology = new ArrayList<>();
     private ArrayList<String> sod = new ArrayList<>();
     private int zero_box_size = 0;
+    private Long ULastClickTime = 0L;
+    private Long KLastClickTime = 0L;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -125,6 +128,7 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
                     box_word_count=words.size();
                     if(words.isEmpty()) {
                         if(zero_box_size >= wordTarget) {
+                            intent.putExtra("sub_title","FINISH");
                             startActivity(intent);
                         } else {
                             intent.putExtra("title","테스트");
@@ -230,88 +234,80 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         btn_unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int index_num = box_word_index;
+                if (SystemClock.elapsedRealtime() - ULastClickTime > 400) {
+                    int index_num = box_word_index;
 
-                if ("TEST".equals(box_num)) {
-                    index_num = count;
-                }
+                    if ("TEST".equals(box_num)) {
+                        index_num = count;
+                    }
 
-                unknown_word_count.setText(String.valueOf(Integer.parseInt(unknown_word_count.getText().toString()) + 1));
+                    unknown_word_count.setText(String.valueOf(Integer.parseInt(unknown_word_count.getText().toString()) + 1));
 
-                viewModel.insertIntoZeroBox(new ZeroBox(Integer.parseInt(voca.get(0).get(index_num)),
-                        voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                        voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                    viewModel.insertIntoZeroBox(new ZeroBox(Integer.parseInt(voca.get(0).get(index_num)),
+                            voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                            voca.get(4).get(index_num), voca.get(5).get(index_num)));
 
-                switch (box_num) {
-                    case "TEST":
-                        PreferenceManager.setInt(mContext, "count", count++);
+                    switch (box_num) {
+                        case "TEST":
+                            PreferenceManager.setInt(mContext, "count", count++);
 
-                        if (Integer.parseInt(unknown_word_count.getText().toString()) == wordTarget) {
-                            PreferenceManager.setInt(mContext, "count", count);
-                            startActivity(intent);
-                        }
-
-                        if (count >= PreferenceManager.getInt(mContext, "total_count")) {
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 1":
-                        box_word_index++;
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFirstBox();
-
-                            if(zero_box_size >= wordTarget) {
+                            if (Integer.parseInt(unknown_word_count.getText().toString()) == wordTarget) {
+                                PreferenceManager.setInt(mContext, "count", count);
                                 startActivity(intent);
-                            } else {
-                                intent.putExtra("title","테스트");
-                                intent.putExtra("sub_title","TEST");
-                                intent.putExtra("type","box_test");
-                                startActivity(intent);
-                                break;
                             }
 
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 2":
-                        box_word_index++;
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllSecondBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 3":
-                        box_word_index++;
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllThirdBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 4":
-                        box_word_index++;
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFourthBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 5":
-                        box_word_index++;
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFifthBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
+                            if (count >= PreferenceManager.getInt(mContext, "total_count")) {
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 1":
+                            box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFirstBox();
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 2":
+                            box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllSecondBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 3":
+                            box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllThirdBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 4":
+                            box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFourthBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 5":
+                            box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFifthBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                    }
+                    ULastClickTime = SystemClock.elapsedRealtime();
                 }
             }
         });
@@ -319,101 +315,104 @@ public class TestFragment extends Fragment implements View.OnClickListener, View
         btn_know.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int index_num = box_word_index;
+                if (SystemClock.elapsedRealtime() - KLastClickTime > 400) {
+                    int index_num = box_word_index;
 
-                if ("TEST".equals(box_num)) {
-                    index_num = count;
-                }
+                    if ("TEST".equals(box_num)) {
+                        index_num = count;
+                    }
 
-                know_word_count.setText(String.valueOf(Integer.parseInt(know_word_count.getText().toString()) + 1));
+                    know_word_count.setText(String.valueOf(Integer.parseInt(know_word_count.getText().toString()) + 1));
 
-                switch (box_num) {
-                    case "TEST":
-                        viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                    switch (box_num) {
+                        case "TEST":
+                            viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
 
-                        PreferenceManager.setInt(mContext, "count", count++);
+                            PreferenceManager.setInt(mContext, "count", count++);
 
-                        if (count >= PreferenceManager.getInt(mContext, "total_count")) {
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 1":
-                        viewModel.insertIntoSecondBox(new SecondBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        box_word_index++;
-
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFirstBox();
-                            if(zero_box_size >= wordTarget) {
+                            if (count >= PreferenceManager.getInt(mContext, "total_count")) {
                                 startActivity(intent);
                             } else {
-                                intent.putExtra("title","테스트");
-                                intent.putExtra("sub_title","TEST");
-                                intent.putExtra("type","box_test");
-                                startActivity(intent);
-                                break;
+                                changeToFront();
                             }
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 2":
-                        viewModel.insertIntoThirdBox(new ThirdBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        box_word_index++;
+                            break;
+                        case "BOX 1":
+                            viewModel.insertIntoSecondBox(new SecondBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                            box_word_index++;
 
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllSecondBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 3":
-                        viewModel.insertIntoFourthBox(new FourthBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFirstBox();
+                                if (zero_box_size >= wordTarget) {
+                                    startActivity(intent);
+                                } else {
+                                    intent.putExtra("title", "테스트");
+                                    intent.putExtra("sub_title", "TEST");
+                                    intent.putExtra("type", "box_test");
+                                    startActivity(intent);
+                                    break;
+                                }
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 2":
+                            viewModel.insertIntoThirdBox(new ThirdBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                            box_word_index++;
 
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllThirdBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 4":
-                        viewModel.insertIntoFifthBox(new FifthBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllSecondBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 3":
+                            viewModel.insertIntoFourthBox(new FourthBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                            box_word_index++;
 
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFourthBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
-                    case "BOX 5":
-                        viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(index_num)),
-                                voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
-                                voca.get(4).get(index_num), voca.get(5).get(index_num)));
-                        box_word_index++;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllThirdBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 4":
+                            viewModel.insertIntoFifthBox(new FifthBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                            box_word_index++;
 
-                        if (box_word_index >= box_word_count) {
-                            viewModel.deleteAllFifthBox();
-                            startActivity(intent);
-                        } else {
-                            changeToFront();
-                        }
-                        break;
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFourthBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                        case "BOX 5":
+                            viewModel.insertIntoFinishBox(new FinishBox(Integer.parseInt(voca.get(0).get(index_num)),
+                                    voca.get(1).get(index_num), voca.get(2).get(index_num), voca.get(3).get(index_num),
+                                    voca.get(4).get(index_num), voca.get(5).get(index_num)));
+                            box_word_index++;
+
+                            if (box_word_index >= box_word_count) {
+                                viewModel.deleteAllFifthBox();
+                                startActivity(intent);
+                            } else {
+                                changeToFront();
+                            }
+                            break;
+                    }
+                    KLastClickTime = SystemClock.elapsedRealtime();
                 }
             }
         });
